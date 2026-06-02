@@ -1,0 +1,386 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background: #1f3c2c;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s;
+}
+
+/* HEADER */
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+/* TOGGLE */
+.toggle-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    width: 60px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* MENU */
+.sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 8px;
+    margin: 5px 10px;
+}
+
+.sidebar a:hover {
+    background: rgba(255,255,255,0.15);
+}
+
+.sidebar a.active {
+    background: #2e8b57;
+}
+
+.icon {
+    width: 40px;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* BOTTOM */
+.sidebar-bottom {
+    margin-top: auto;
+    padding: 10px;
+}
+
+.sidebar-bottom hr {
+    border: 1px solid rgba(255,255,255,0.6);
+    margin-bottom: 10px;
+}
+
+/* COLLAPSE */
+.sidebar.close {
+    width: 70px;
+}
+
+.sidebar.close span:not(.icon) {
+    display: none;
+}
+
+.sidebar.close .menu-title {
+    display: none;
+}
+
+.sidebar.close a {
+    justify-content: center;
+}
+
+/* MAIN */
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* NAVBAR */
+.navbar {
+    height: 60px;
+    background: #1f3c2c;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.left img {
+    width: 40px;
+}
+
+.brand {
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+.content {
+    flex: 1;
+    position: relative;
+    background: url('../images/bg.png') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 60px);
+}
+
+/* OVERLAY */
+.content::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.3);
+}
+
+/* CARD */
+.profile-card {
+    position: relative;
+    z-index: 1;
+    background: rgba(255,255,255,0.95);
+    padding: 40px;
+    border-radius: 16px;
+    width: 420px;
+    box-shadow: 0 40px 40px rgba(0,0,0,0.4);
+    text-align: center;
+}
+
+.profile-card h2 {
+    margin-bottom: 25px;
+    color: #1f3c2c;
+}
+
+/* FIELD */
+.field {
+    margin-bottom: 18px;
+    text-align: left;
+}
+
+.required {
+    color: red;
+    margin-left: 3px;
+}
+
+.field label {
+    font-size: 13px;
+    color: #666;
+}
+
+.field p {
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 4px;
+}
+
+/* PASSWORD */
+.password-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.password-box input {
+    flex: 1;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.eye-btn {
+    background: #eee;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.eye-btn:hover {
+    background: #ddd;
+}
+
+.edit-link {
+    display: block;
+    text-align: center;
+    background: #2e8b57;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.edit-link:hover {
+    background: #256f47;
+}
+
+.edit-btn {
+    margin-top: 25px;
+}
+
+.edit-btn button {
+    width: 100%;
+    padding: 10px;
+    background: #2e8b57;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.edit-btn button:hover {
+    background: #256f47;
+}
+
+.field input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.field input:focus {
+    border-color: #2e8b57;
+}
+
+.edit-mode {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+/* tombol kembali kiri */
+.edit-mode .btn-kembali {
+    width: 48%;
+}
+
+/* tombol simpan kanan */
+.edit-mode button:last-child {
+    width: 48%;
+}
+
+/* OVERLAY */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5); /* hitam transparan */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* BOX */
+.modal-content {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    width: 300px;
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+}
+
+/* ANIMASI */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* BUTTON */
+.modal-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.btn-cancel {
+    flex: 1;
+    padding: 10px;
+    background: #ccc;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-logout {
+    flex: 1;
+    padding: 10px;
+    background: #2e8b57;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-logout:hover {
+    background: #256f47;
+}
+
+.success-msg {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background: #2e8b57;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease;
+}
+
+.batal-msg{
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background: #dc3545;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease;
+}
+
+.error-msg {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+    display: none;
+}
+
+.error-msg.show {
+    display: block;
+}
+
+.input-error {
+    border: 1px solid red;
+    background: #fff5f5;
+}

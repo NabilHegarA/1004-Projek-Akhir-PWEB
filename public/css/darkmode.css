@@ -1,0 +1,585 @@
+
+/* =========================
+   BASE LIGHT MODE
+========================= */
+body {
+    background: #f4f6f9;
+    color: #111;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* =========================
+   🌙 DARK MODE GLOBAL
+========================= */
+.dark body {
+    background: #0f172a;
+    color: #e5e7eb;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+.dark .navbar {
+    background: #0b1220;
+    color: #e5e7eb;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+.dark .sidebar {
+    background: #0b1220;
+    color: #e5e7eb;
+}
+
+.dark .sidebar a {
+    color: #e5e7eb;
+}
+
+.dark .sidebar a:hover {
+    background: rgba(255,255,255,0.08);
+}
+
+.dark .sidebar a.active {
+    background: #1e293b;
+}
+
+/* =========================
+   CONTENT AREA
+========================= */
+.dark .content {
+    background: #0f172a;
+}
+
+.dark .profile-page {
+    position: relative;
+    background: url('../images/bg.png') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dark .profile-page::before {
+    background: rgba(0,0,0,0.8);
+}
+
+/* =========================
+   CARD (dashboard & umum)
+========================= */
+.dark .card,
+.dark .profile-card {
+    background: #1e293b;
+    color: #e5e7eb;
+    border: 1px solid #334155;
+}
+
+/* =========================
+   TEXT GLOBAL
+========================= */
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark p,
+.dark span,
+.dark label {
+    color: #e5e7eb;
+}
+
+/* =========================
+   INPUT / SEARCH / SELECT
+========================= */
+.dark input,
+.dark select,
+.dark textarea {
+    background: #1e293b;
+    color: #e5e7eb;
+    border: 1px solid #334155;
+}
+
+.dark input::placeholder {
+    color: #94a3b8;
+}
+
+/* =========================
+   BUTTON (FIX WARNA HIJAU KAMU)
+========================= */
+.dark .btn-tambah,
+.dark .btn-edit {
+    background: #2e8b57;
+    color: white;
+}
+
+.dark .btn-tambah:hover,
+.dark .btn-edit:hover {
+    background: #256f47;
+}
+
+/* =========================
+   STATUS TEXT
+========================= */
+.dark .available {
+    color: #22c55e;
+}
+
+.dark .unavailable {
+    color: #ef4444;
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+.dark .empty-message {
+    background: #1e293b;
+    color: #94a3b8;
+}
+
+/* =========================
+   MODAL
+========================= */
+.dark .modal-content {
+    background: #1e293b;
+    color: #e5e7eb;
+}
+
+.dark .btn-cancel {
+    background: #334155;
+    color: #e5e7eb;
+}
+
+.dark .btn-logout {
+    background: #16a34a;
+}
+
+/* =========================
+   SUCCESS MESSAGE
+========================= */
+.dark .success-msg {
+    background: #16a34a;
+    color: white;
+}
+
+/* =========================
+   PROFILE PAGE
+========================= */
+.dark .profile-card h2,
+.dark .desc-list li {
+    color: #f1f5f9;
+}
+
+.dark .field label {
+    color: #cbd5e1;
+}
+
+/* =========================
+   CARD HOVER
+========================= */
+.dark .card:hover {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* =========================
+   SWITCH TOGGLE (HIJAU FIX)
+========================= */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 16px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: #ccc;
+  transition: 0.3s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 10px;
+  width: 10px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #22c55e; /* HIJAU (sesuai theme kamu) */
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+/* =========================
+   BOOKING DARK MODE
+========================= */
+
+.dark .booking-section {
+    background: #0f172a;
+}
+
+.dark .booking-wrapper {
+    background: #1e293b;
+    border: 1px solid #334155;
+}
+
+.dark .payment-box,
+.dark .booking-note {
+    background: #0f172a;
+    border-color: #334155;
+}
+
+.dark .payment-box p,
+.dark .booking-note p {
+    color: #e5e7eb;
+}
+
+.dark .form-group input[readonly] {
+    background: #334155;
+    color: #cbd5e1;
+}
+
+.dark .booking-title,
+.dark .form-group label,
+.dark .payment-section h3,
+.dark .user-section h3,
+.dark .booking-form-section h3 {
+    color: #f1f5f9;
+}
+
+/* ================= TABLE CARD ================= */
+
+.table-card {
+    margin-top: 30px;
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.table-header h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.table-header form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.table-header input,
+.table-header button {
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.table-header input {
+    border: 1px solid #d1d5db;
+    background: #fff;
+    color: #111827;
+}
+
+.table-header button {
+    background: #1e88e5;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.table-header button:hover {
+    transform: translateY(-1px);
+    opacity: 0.9;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    border-radius: 14px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th {
+    background: #f3f4f6;
+    padding: 16px;
+    text-align: left;
+    font-size: 14px;
+    color: #374151;
+}
+
+table td {
+    padding: 16px;
+    border-bottom: 1px solid #e5e7eb;
+    color: #111827;
+}
+
+table tr {
+    transition: 0.2s ease;
+}
+
+table tr:hover {
+    background: #f9fafb;
+}
+
+/* ================= STATUS ================= */
+
+.status {
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.status.pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status.confirmed {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status.completed {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.status.rejected,
+.status.canceled {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* ========================================
+   🌙 DARK MODE
+======================================== */
+
+.dark .table-card {
+    background: #1e293b;
+    border: 1px solid #334155;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+
+.dark .table-header h3 {
+    color: #f1f5f9;
+}
+
+.dark .table-header input {
+    background: #0f172a;
+    border: 1px solid #334155;
+    color: #e5e7eb;
+}
+
+.dark .table-header input::placeholder {
+    color: #94a3b8;
+}
+
+.dark .table-header button {
+    background: #2563eb;
+    color: white;
+}
+
+.dark .table-header button:hover {
+    background: #1d4ed8;
+}
+
+.dark table {
+    background: transparent;
+}
+
+.dark table th {
+    background: #0f172a;
+    color: #cbd5e1;
+    border-bottom: 1px solid #334155;
+}
+
+.dark table td {
+    color: #e5e7eb;
+    border-bottom: 1px solid #334155;
+}
+
+.dark table tr:hover {
+    background: rgba(255,255,255,0.04);
+}
+
+/* ========================================
+   🌙 DARK MODE - DETAIL MODAL
+======================================== */
+
+.dark .detail-modal {
+    background: #1e293b;
+    border: 1px solid #334155;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+}
+
+.dark .detail-title {
+    color: #f1f5f9;
+}
+
+.dark .close-detail {
+    background: #334155;
+    color: #e5e7eb;
+}
+
+.dark .close-detail:hover {
+    background: #475569;
+}
+
+.dark .detail-box label {
+    color: #cbd5e1;
+}
+
+.dark .detail-box p {
+    background: #0f172a;
+    color: #e5e7eb;
+    border: 1px solid #334155;
+}
+
+.dark .detail-bukti-img {
+    border: 1px solid #334155;
+}
+
+/* ========================================
+   🌙 DARK MODE - REJECT MODAL
+======================================== */
+
+.dark .reject-modal-box {
+    background: #1e293b;
+    border: 1px solid #334155;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+}
+
+.dark .reject-modal-box h3 {
+    color: #f1f5f9;
+}
+
+.dark .reject-close {
+    background: #334155;
+    color: #e5e7eb;
+}
+
+.dark .reject-close:hover {
+    background: #dc3545;
+    color: white;
+}
+
+.dark .reject-textarea {
+    background: #0f172a;
+    border: 1px solid #334155;
+    color: #e5e7eb;
+}
+
+.dark .reject-textarea::placeholder {
+    color: #94a3b8;
+}
+
+.dark .reject-textarea:focus {
+    border-color: #22c55e;
+    box-shadow: 0 0 0 3px rgba(34,197,94,0.18);
+}
+
+.dark .reject-btn {
+    background: #dc3545;
+}
+
+.dark .reject-btn:hover {
+    background: #b91c1c;
+}
+
+/* =========================
+   DARK MODE MODAL DETAIL LAPAK
+========================= */
+
+.dark #lapakModal{
+    background: rgba(0,0,0,0.75);
+}
+
+/* BOX */
+
+.dark .lapak-modal-content{
+    background: #1e293b;
+    color: #e5e7eb;
+    border: 1px solid #334155;
+}
+
+/* CLOSE BUTTON */
+
+.dark .lapak-close{
+    background: #334155;
+    color: #e5e7eb;
+}
+
+.dark .lapak-close:hover{
+    background: #475569;
+}
+
+/* TITLE */
+
+.dark .lapak-modal-title{
+    color: #22c55e;
+}
+
+/* LABEL */
+
+.dark .lapak-label{
+    color: #4ade80;
+}
+
+/* DESC BOX */
+
+.dark .lapak-desc-box{
+    background: #0f172a;
+    color: #e5e7eb;
+    border: 1px solid #334155;
+}
+
+/* TEXT */
+
+.dark #modalLapakJenis,
+.dark #modalLapakHarga,
+.dark #modalLapakStatus,
+.dark #modalLapakDesc{
+    color: #e5e7eb;
+}
+
+/* BUTTON */
+
+.dark .lapak-booking-btn{
+    background: #22c55e;
+    color: white;
+}
+
+.dark .lapak-booking-btn:hover{
+    background: #16a34a;
+}

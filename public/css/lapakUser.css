@@ -1,0 +1,711 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background: #1f3c2c;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s;
+}
+
+/* HEADER */
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+/* TOGGLE */
+.toggle-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+
+    width: 60px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* MENU */
+.sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 8px;
+    margin: 5px 10px;
+}
+
+.sidebar a:hover {
+    background: rgba(255,255,255,0.15);
+}
+
+.sidebar a.active {
+    background: #2e8b57;
+}
+
+/* ICON BIAR RAPI */
+.icon {
+    width: 40px;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* BOTTOM */
+.sidebar-bottom {
+    margin-top: auto;
+    padding: 10px;
+}
+
+.sidebar-bottom hr {
+    border: 1px solid rgba(255,255,255,0.6);
+    margin-bottom: 10px;
+}
+
+/* COLLAPSE */
+.sidebar.close {
+    width: 70px;
+}
+
+.sidebar.close span:not(.icon) {
+    display: none;
+}
+
+.sidebar.close .menu-title {
+    display: none;
+}
+
+.sidebar.close a {
+    justify-content: center;
+}
+
+/* MAIN */
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* NAVBAR */
+.navbar {
+    height: 60px;
+    background: #1f3c2c;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.left img {
+    width: 55px;
+}
+
+.brand {
+    white-space: nowrap;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* CONTENT */
+.content {
+    padding: 20px;
+    background: #f4f6f9;
+    overflow-y: auto;
+}
+
+/* SEARCH */
+.search-box {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.search-box input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.search-box button {
+    padding: 10px 20px;
+    background: #2e8b57;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.filter-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.filter-box label {
+    display: none;
+}
+
+.filter-box select {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.lapak-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    justify-content: start;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    position: relative;
+    display: block;
+    height: auto;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.card h3 {
+    color: #2e8b57;
+    margin-bottom: 10px;
+}
+
+.card p {
+    margin-bottom: 6px;
+}
+
+.status {
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.desc-list {
+    padding-left: 18px;
+}
+
+.desc-list li {
+    font-size: 14px;
+    color: #000000;
+}
+
+.available {
+    color: green;
+}
+
+.unavailable {
+    color: red;
+}
+
+.btn-detail{
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    background: #2e8b57;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-detail:hover{
+    background: #256f47;
+}
+
+.more-desc{
+    color: #2e8b57;
+    font-weight: 600;
+    list-style: none;
+}
+
+.card button {
+    margin-top: auto;
+    padding: 10px;
+    background: #2e8b57;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.card button:disabled {
+    background: gray;
+}
+
+.user-btn {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.disabled-btn {
+    background: #b5b5b5 !important;
+    cursor: not-allowed;
+    pointer-events: none;
+    font-size: 15px;
+}
+
+.disabled-btn:hover {
+    background: #b5b5b5 !important;
+}
+
+.btn-booking {
+    flex: 1;
+    margin-top: auto;
+    padding: 10px;
+    background: #2f7a4d;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-booking:hover{
+    background:#1f5a36;
+}
+
+.disabled{
+    background: gray;
+    pointer-events: none;
+}
+
+.status{
+    font-weight: bold;
+}
+
+.available{
+    color: green;
+}
+
+.unavailable{
+    color: red;
+}
+
+.empty-message {
+    grid-column: 1 / -1;
+    width: 100%;
+    text-align: center;
+    padding: 60px 20px;
+    font-size: 18px;
+    color: #a8a8a8;
+    background: #f7f7f7;
+    border-radius: 15px;
+}
+
+.success-msg{
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease;
+    background: #2f7a4d;
+}
+
+.error-msg {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+    display: none;
+}
+
+.error-msg.show {
+    display: block;
+}
+
+/* OVERLAY */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5); /* hitam transparan */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* BOX */
+.modal-content {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    width: 300px;
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+}
+
+/* ANIMASI */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* BUTTON */
+.modal-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.btn-cancel {
+    flex: 1;
+    padding: 10px;
+    background: #ccc;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-logout {
+    flex: 1;
+    padding: 10px;
+    background: #2e8b57;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-logout:hover {
+    background: #256f47;
+}
+
+/* ================= MODAL DETAIL LAPAK ================= */
+
+.lapak-modal{
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,0.6);
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 99999;
+
+    padding: 20px;
+}
+
+.lapak-modal.active{
+    display: flex;
+}
+
+.lapak-modal-content{
+    width: 100%;
+    max-width: 1000px;
+
+    background: white;
+    border-radius: 24px;
+
+    padding: 30px;
+    position: relative;
+
+    animation: fadeIn 0.25s ease;
+}
+
+.lapak-close{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f1f1f1;
+
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.lapak-modal-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.lapak-modal-img{
+    width: 100%;
+    height: 350px;
+
+    object-fit: cover;
+    border-radius: 18px;
+}
+
+.lapak-modal-title{
+    font-size: 28px;
+    color: #2e8b57;
+    margin-bottom: 20px;
+}
+
+.lapak-detail-group{
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.lapak-label{
+    font-weight: bold;
+    color: #2e8b57;
+    margin-bottom: 6px;
+}
+
+.lapak-desc-box{
+    background: #f5f5f5;
+    padding: 14px;
+    border-radius: 12px;
+    line-height: 1.7;
+}
+
+.lapak-booking-btn{
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 14px;
+    background: #2e8b57;
+    color: white;
+    text-decoration: none;
+    border-radius: 14px;
+    font-weight: bold;
+    font-size: medium;
+    transition: 0.2s;
+}
+
+.lapak-booking-btn:hover{
+    background: #256f47;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 768px){
+
+    .lapak-modal-grid{
+        grid-template-columns: 1fr;
+    }
+
+    .lapak-modal-img{
+        height: 250px;
+    }
+
+}
+
+/* ================= MODAL DETAIL LAPAK ================= */
+
+#lapakModal{
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,0.55);
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 99999;
+
+    padding: 20px;
+}
+
+#lapakModal.active{
+    display: flex;
+}
+
+/* BOX */
+
+.lapak-modal-content{
+    width: 100%;
+    max-width: 780px;
+
+    background: white;
+    border-radius: 20px;
+
+    padding: 24px;
+    position: relative;
+
+    animation: fadeIn 0.25s ease;
+
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* CLOSE */
+
+.lapak-close{
+    position: absolute;
+    top: 14px;
+    right: 14px;
+
+    width: 34px;
+    height: 34px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f1f1f1;
+
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* GRID */
+
+.lapak-modal-grid{
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+/* IMAGE */
+
+.lapak-modal-img{
+    width: 100%;
+    height: 240px;
+
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+/* TITLE */
+
+.lapak-modal-title{
+    font-size: 24px;
+    color: #2e8b57;
+    margin-bottom: 18px;
+}
+
+/* DETAIL */
+
+.lapak-detail-group{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.lapak-label{
+    font-size: 14px;
+    font-weight: bold;
+    color: #2e8b57;
+    margin-bottom: 4px;
+}
+
+.lapak-desc-box{
+    background: #f5f5f5;
+    padding: 12px;
+    border-radius: 12px;
+
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* BUTTON */
+
+.lapak-booking-btn{
+    margin-top: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+
+    padding: 12px;
+
+    background: #2e8b57;
+    color: white;
+
+    text-decoration: none;
+    border-radius: 12px;
+
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+.lapak-booking-btn:hover{
+    background: #256f47;
+}
+
+/* MOBILE */
+
+@media(max-width: 768px){
+
+    .lapak-modal-content{
+        padding: 20px;
+    }
+
+    .lapak-modal-grid{
+        grid-template-columns: 1fr;
+    }
+
+    .lapak-modal-img{
+        height: 220px;
+    }
+
+}
