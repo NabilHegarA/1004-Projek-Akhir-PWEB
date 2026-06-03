@@ -47,26 +47,57 @@
     @include('components.logout-modal')
 
     <script>
-        function toggleSidebar() {
-            document.getElementById("sidebar").classList.toggle("close");
-        }
-
         const sidebar = document.getElementById("sidebar");
+        let pinned = false;
 
-        let pinned = false; // status kalau sidebar dikunci via tombol
-
+        /* TOGGLE */
         function toggleSidebar() {
 
-            if(window.innerWidth <= 700){
-                document
-                    .getElementById("sidebar")
-                    .classList.toggle("show");
-            } else {
-                document
-                    .getElementById("sidebar")
-                    .classList.toggle("close");
+            /* DESKTOP */
+            if (window.innerWidth > 1024) {
+                pinned = !pinned;
+                sidebar.classList.toggle("close", !pinned);
+                return;
             }
 
+            /* TABLET */
+            if (window.innerWidth > 767) {
+                sidebar.classList.toggle("close");
+                return;
+            }
+
+            /* MOBILE */
+            sidebar.classList.toggle("show");
+        }
+
+        /* HOVER DESKTOP */
+        sidebar.addEventListener("mouseenter", () => {
+
+            if (window.innerWidth <= 1024) return;
+
+            if (!pinned) {
+                sidebar.classList.remove("close");
+            }
+        });
+
+        sidebar.addEventListener("mouseleave", () => {
+
+            if (window.innerWidth <= 1024) return;
+
+            if (!pinned) {
+                sidebar.classList.add("close");
+            }
+        });
+
+        /* TABLET + MOBILE */
+        function toggleMobileSidebar() {
+            if (window.innerWidth > 1024) return;
+            sidebar.classList.toggle("show");
+            if (sidebar.classList.contains("show")) {
+                sidebar.classList.remove("close");
+            } else {
+                sidebar.classList.add("close");
+            }
         }
 
         // HOVER EXPAND

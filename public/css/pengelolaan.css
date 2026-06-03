@@ -71,6 +71,45 @@ body {
     font-size: 18px;
 }
 
+/* DEFAULT (sidebar terbuka) */
+.darkmode-row{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* =========================
+   SIDEBAR CLOSE MODE
+========================= */
+.sidebar.close .darkmode-row{
+    justify-content: center;
+}
+
+/* sembunyikan text saat close */
+.sidebar.close .darkmode-row .text{
+    display: none;
+}
+
+/* HILANGKAN SWITCH saat close */
+.sidebar.close .darkmode-row .switch{
+    display: none;
+}
+
+/* ICON tetap tampil */
+.sidebar.close .darkmode-row .icon{
+    display: flex;
+    justify-content: center;
+    width: 40px;
+}
+
+.sidebar-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px;
+    margin:5px 10px;
+}
+
 .sidebar-bottom {
     margin-top: auto;
     padding: 10px;

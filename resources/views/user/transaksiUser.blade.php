@@ -442,6 +442,40 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+function openImgPreview(src) {
+
+    const overlay = document.getElementById('imgPreviewModal');
+    const img = document.getElementById('previewImg');
+
+    if (!overlay || !img) {
+        console.error('imgPreviewModal atau previewImg tidak ditemukan di HTML');
+        return;
+    }
+
+    img.src = src;
+    overlay.style.display = 'flex';
+
+    // optional: lock scroll background
+    document.body.style.overflow = 'hidden';
+}
+
+function closeImgPreview(event) {
+
+    const overlay = document.getElementById('imgPreviewModal');
+    const img = document.getElementById('previewImg');
+
+    if (!overlay || !img) return;
+
+    // kalau klik background overlay ATAU tombol X
+    if (!event || event.target === overlay) {
+        overlay.style.display = 'none';
+        img.src = '';
+
+        // unlock scroll
+        document.body.style.overflow = '';
+    }
+}
+
 function cancelBooking(id)
 {
     fetch(`/user/booking/${id}/cancel`, {

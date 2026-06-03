@@ -73,6 +73,45 @@ body {
     font-size: 18px;
 }
 
+/* DEFAULT (sidebar terbuka) */
+.darkmode-row{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* =========================
+   SIDEBAR CLOSE MODE
+========================= */
+.sidebar.close .darkmode-row{
+    justify-content: center;
+}
+
+/* sembunyikan text saat close */
+.sidebar.close .darkmode-row .text{
+    display: none;
+}
+
+/* HILANGKAN SWITCH saat close */
+.sidebar.close .darkmode-row .switch{
+    display: none;
+}
+
+/* ICON tetap tampil */
+.sidebar.close .darkmode-row .icon{
+    display: flex;
+    justify-content: center;
+    width: 40px;
+}
+
+.sidebar-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px;
+    margin:5px 10px;
+}
+
 .sidebar-bottom {
     margin-top: auto;
     padding: 10px;
@@ -404,7 +443,67 @@ table td {
     background: #256f47;
 }
 
-@media (max-width:1024px){
+
+/* =========================
+   MOBILE SIDEBAR
+========================= */
+
+.mobile-toggle{
+    display:none;
+    background:none;
+    border:none;
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+}
+
+.sidebar-overlay{
+    display:none;
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,0.4);
+
+    z-index:9998;
+}
+
+.sidebar-overlay.show{
+    display:block;
+}
+
+@media (max-width:1024px) and (min-width:768px){
+
+    .sidebar{
+        width:70px;
+    }
+
+    .sidebar.close{
+        width:70px;
+    }
+
+    .sidebar.close .text,
+    .sidebar.close .switch,
+    .sidebar.close .menu-title{
+        display:none;
+    }
+
+    .sidebar.close a{
+        justify-content:center;
+    }
+
+    .sidebar:not(.close){
+        width:220px;
+    }
+
+    .sidebar:not(.close) .text,
+    .sidebar:not(.close) .menu-title{
+        display:inline;
+    }
+
+    .sidebar:not(.close) a{
+        justify-content:flex-start;
+    }
 
     .cards{
         grid-template-columns:repeat(2,1fr);
@@ -421,33 +520,60 @@ table td {
     .table-card{
         padding:20px;
     }
+
 }
 
-@media (max-width:768px){
+@media (max-width:767px){
 
-    .cards{
-        grid-template-columns:1fr;
+    .sidebar{
+        position:fixed;
+        top:0;
+        left:-250px;
+
+        width:250px;
+        height:100vh;
+
+        z-index:9999;
+        transition:.3s;
     }
 
-    .navbar{
-        flex-direction:column;
-        align-items:flex-start;
-        height:auto;
-        padding:10px;
-        gap:5px;
+    .sidebar.show{
+        left:0;
     }
 
-    .navbar .left,
-    .navbar .right{
-        width:100%;
+    /* Saat muncul, selalu full */
+    .sidebar.close{
+        width:250px;
     }
 
-    .left img{
-        width:40px;
+    .sidebar.close .text,
+    .sidebar.close .menu-title{
+        display:inline;
+    }
+
+    .sidebar.close a{
+        justify-content:flex-start;
+    }
+
+    .mobile-toggle{
+        display:block;
     }
 
     .brand{
-        font-size:14px;
+        font-size:15px;
+        margin-left: -10px;
+    }
+
+    .navbar{
+        justify-content:flex-start;
+    }
+
+    .right{
+        display:none;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
     }
 
     .table-header{

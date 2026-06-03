@@ -71,6 +71,7 @@ body {
     font-size: 18px;
 }
 
+
 /* BOTTOM */
 .sidebar-bottom {
     margin-top: auto;
@@ -78,7 +79,7 @@ body {
 }
 
 .sidebar-bottom hr {
-    border: 1px solid rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,255,255,0.5);
     margin-bottom: 10px;
 }
 
@@ -87,16 +88,52 @@ body {
     width: 70px;
 }
 
-.sidebar.close span:not(.icon) {
-    display: none;
-}
-
+.sidebar.close .text,
 .sidebar.close .menu-title {
     display: none;
 }
 
 .sidebar.close a {
     justify-content: center;
+}
+
+/* DEFAULT (sidebar terbuka) */
+.darkmode-row{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* =========================
+   SIDEBAR CLOSE MODE
+========================= */
+.sidebar.close .darkmode-row{
+    justify-content: center;
+}
+
+/* sembunyikan text saat close */
+.sidebar.close .darkmode-row .text{
+    display: none;
+}
+
+/* HILANGKAN SWITCH saat close */
+.sidebar.close .darkmode-row .switch{
+    display: none;
+}
+
+/* ICON tetap tampil */
+.sidebar.close .darkmode-row .icon{
+    display: flex;
+    justify-content: center;
+    width: 40px;
+}
+
+.sidebar-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px;
+    margin:5px 10px;
 }
 
 /* MAIN */
@@ -384,3 +421,186 @@ body {
     border: 1px solid red;
     background: #fff5f5;
 }
+
+/* =========================
+   MOBILE SIDEBAR
+========================= */
+
+.mobile-toggle{
+    display:none;
+    background:none;
+    border:none;
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+}
+
+.sidebar-overlay{
+    display:none;
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,0.4);
+
+    z-index:9998;
+}
+
+.sidebar-overlay.show{
+    display:block;
+}
+
+@media (max-width:1024px) and (min-width:768px){
+
+    .sidebar{
+        width:70px;
+    }
+
+    .sidebar.close{
+        width:70px;
+    }
+
+    .sidebar.close .text,
+    .sidebar.close .menu-title{
+        display:none;
+    }
+
+    .sidebar.close a{
+        justify-content:center;
+    }
+
+    .sidebar:not(.close){
+        width:220px;
+    }
+
+    .sidebar:not(.close) .text,
+    .sidebar:not(.close) .menu-title{
+        display:inline;
+    }
+
+    .sidebar:not(.close) a{
+        justify-content:flex-start;
+    }
+
+}
+
+@media (max-width:767px){
+
+    .sidebar{
+        position:fixed;
+        top:0;
+        left:-250px;
+
+        width:250px;
+        height:100vh;
+
+        z-index:9999;
+        transition:.3s;
+    }
+
+    .sidebar.show{
+        left:0;
+    }
+
+    /* Saat muncul, selalu full */
+    .sidebar.close{
+        width:250px;
+    }
+
+    .sidebar.close .text,
+    .sidebar.close .menu-title{
+        display:inline;
+    }
+
+    .sidebar.close a{
+        justify-content:flex-start;
+    }
+
+    .mobile-toggle{
+        display:block;
+    }
+
+    .brand{
+        font-size:15px;
+        margin-left: -10px;
+    }
+
+    .navbar{
+        justify-content:flex-start;
+    }
+
+    .right{
+        display:none;
+    }
+
+    .content {
+        height: auto;
+        min-height: calc(100vh - 60px);
+        padding: 20px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background: url('../images/bg.png') center/cover no-repeat;
+        background-attachment: fixed;
+    }
+
+    .profile-card {
+        width: 100%;
+        max-width: 320px;
+        margin: auto;
+    }
+
+    .profile-card h2 {
+        font-size: 18px;
+    }
+
+    .field p {
+        font-size: 14px;
+    }
+
+    .btn {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .card-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .card {
+        transform: scale(0.95);
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .card-body {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .card-body h3 {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .card-body p {
+        font-size: 12px;
+        margin: 2px 0;
+    }
+
+    .status {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+
+    .detail-icon {
+        font-size: 16px;
+        top: 8px;
+        right: 8px;
+    }
+}
+

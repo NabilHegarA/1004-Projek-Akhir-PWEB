@@ -26,6 +26,14 @@
     </a>
 
     <div class="sidebar-bottom">
+        <div class="darkmode-row sidebar-item">
+            <span class="icon">🌙</span>
+            <span class="text">Dark Mode</span>
+            <label class="switch">
+                <input type="checkbox" id="darkToggle" onclick="toggleDarkMode()">
+                <span class="slider"></span>
+            </label>
+        </div>
         <hr>
         <a href="#" onclick="openModal()">
             <span class="icon">🚪</span>

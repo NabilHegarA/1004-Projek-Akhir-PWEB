@@ -71,35 +71,69 @@ body {
     font-size: 18px;
 }
 
+
+/* BOTTOM */
 .sidebar-bottom {
     margin-top: auto;
     padding: 10px;
 }
 
 .sidebar-bottom hr {
-    border: 1px solid rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,255,255,0.5);
     margin-bottom: 10px;
 }
 
+/* COLLAPSE */
 .sidebar.close {
     width: 70px;
-    min-width: 70px;
 }
 
-.text {
-    display: inline;
-}
-
-.sidebar.close .text {
-    display: none;
-}
-
+.sidebar.close .text,
 .sidebar.close .menu-title {
     display: none;
 }
 
 .sidebar.close a {
     justify-content: center;
+}
+
+/* DEFAULT (sidebar terbuka) */
+.darkmode-row{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* =========================
+   SIDEBAR CLOSE MODE
+========================= */
+.sidebar.close .darkmode-row{
+    justify-content: center;
+}
+
+/* sembunyikan text saat close */
+.sidebar.close .darkmode-row .text{
+    display: none;
+}
+
+/* HILANGKAN SWITCH saat close */
+.sidebar.close .darkmode-row .switch{
+    display: none;
+}
+
+/* ICON tetap tampil */
+.sidebar.close .darkmode-row .icon{
+    display: flex;
+    justify-content: center;
+    width: 40px;
+}
+
+.sidebar-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px;
+    margin:5px 10px;
 }
 
 .main {
@@ -300,57 +334,134 @@ body {
     animation: fadeIn 0.3s ease;
 }
 
-@media (max-width: 1024px) {
-    .cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
+/* =========================
+   MOBILE SIDEBAR
+========================= */
 
-    .brand {
-        font-size: 16px;
-    }
-
-    .profile-card {
-        max-width: 350px;
-        padding: 25px;
-    }
+.mobile-toggle{
+    display:none;
+    background:none;
+    border:none;
+    color:white;
+    font-size:22px;
+    cursor:pointer;
 }
 
-@media (max-width: 768px) {
-    .cards {
-        grid-template-columns: 1fr;
+.sidebar-overlay{
+    display:none;
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,0.4);
+
+    z-index:9998;
+}
+
+.sidebar-overlay.show{
+    display:block;
+}
+
+@media (max-width:1024px) and (min-width:768px){
+
+    .sidebar{
+        width:70px;
     }
 
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        height: auto;
-        padding: 10px;
-        gap: 5px;
+    .sidebar.close{
+        width:70px;
     }
 
-    .navbar .left,
-    .navbar .right {
-        width: 100%;
-        justify-content: flex-start;
+    .sidebar.close .text,
+    .sidebar.close .menu-title{
+        display:none;
     }
 
-    .left img {
-        width: 40px;
+    .sidebar.close a{
+        justify-content:center;
     }
 
-    .brand {
-        font-size: 14px;
+    .sidebar:not(.close){
+        width:220px;
+    }
+
+    .sidebar:not(.close) .text,
+    .sidebar:not(.close) .menu-title{
+        display:inline;
+    }
+
+    .sidebar:not(.close) a{
+        justify-content:flex-start;
+    }
+
+}
+
+@media (max-width:767px){
+
+    .sidebar{
+        position:fixed;
+        top:0;
+        left:-250px;
+
+        width:250px;
+        height:100vh;
+
+        z-index:9999;
+        transition:.3s;
+    }
+
+    .sidebar.show{
+        left:0;
+    }
+
+    /* Saat muncul, selalu full */
+    .sidebar.close{
+        width:250px;
+    }
+
+    .sidebar.close .text,
+    .sidebar.close .menu-title{
+        display:inline;
+    }
+
+    .sidebar.close a{
+        justify-content:flex-start;
+    }
+
+    .mobile-toggle{
+        display:block;
+    }
+
+    .brand{
+        font-size:15px;
+        margin-left: -10px;
+    }
+
+    .navbar{
+        justify-content:flex-start;
+    }
+
+    .right{
+        display:none;
     }
 
     .content {
+        height: auto;
+        min-height: calc(100vh - 60px);
         padding: 20px;
-        align-items: flex-start;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background: url('../images/bg.png') center/cover no-repeat;
+        background-attachment: fixed;
     }
 
     .profile-card {
-        max-width: 100%;
-        padding: 20px;
-        border-radius: 12px;
+        width: 100%;
+        max-width: 320px;
+        margin: auto;
     }
 
     .profile-card h2 {
@@ -365,4 +476,43 @@ body {
         font-size: 12px;
         padding: 8px;
     }
+
+    .card-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .card {
+        transform: scale(0.95);
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .card-body {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .card-body h3 {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+    .card-body p {
+        font-size: 12px;
+        margin: 2px 0;
+    }
+
+    .status {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+
+    .detail-icon {
+        font-size: 16px;
+        top: 8px;
+        right: 8px;
+    }
 }
+

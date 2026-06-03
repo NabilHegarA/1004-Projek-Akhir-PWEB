@@ -36,6 +36,7 @@
 <body>
 
     @include('components.sidebar-user')
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
     <div class="main">
         @include('components.navbar-admin')
@@ -48,31 +49,58 @@
     @include('components.logout-modal')
 
     <script>
-        function toggleSidebar() {
-            document.getElementById("sidebar").classList.toggle("close");
-        }
-
         const sidebar = document.getElementById("sidebar");
+        let pinned = false;
 
-        let pinned = false; // status kalau sidebar dikunci via tombol
-
+        /* TOGGLE */
         function toggleSidebar() {
-            pinned = !pinned;
-            sidebar.classList.toggle("close", !pinned);
+
+            /* DESKTOP */
+            if (window.innerWidth > 1024) {
+                pinned = !pinned;
+                sidebar.classList.toggle("close", !pinned);
+                return;
+            }
+
+            /* TABLET */
+            if (window.innerWidth > 767) {
+                sidebar.classList.toggle("close");
+                return;
+            }
+
+            /* MOBILE */
+            sidebar.classList.toggle("show");
         }
 
-        // HOVER EXPAND
+        /* HOVER DESKTOP */
         sidebar.addEventListener("mouseenter", () => {
+
+            if (window.innerWidth <= 1024) return;
+
             if (!pinned) {
                 sidebar.classList.remove("close");
             }
         });
 
         sidebar.addEventListener("mouseleave", () => {
+
+            if (window.innerWidth <= 1024) return;
+
             if (!pinned) {
                 sidebar.classList.add("close");
             }
         });
+
+        /* TABLET + MOBILE */
+        function toggleMobileSidebar() {
+            if (window.innerWidth > 1024) return;
+            sidebar.classList.toggle("show");
+            if (sidebar.classList.contains("show")) {
+                sidebar.classList.remove("close");
+            } else {
+                sidebar.classList.add("close");
+            }
+        }
 
         function openModal() {
             document.getElementById("logoutModal").style.display = "flex";

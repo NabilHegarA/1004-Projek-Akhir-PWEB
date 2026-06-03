@@ -74,6 +74,7 @@ body {
     font-size: 18px;
 }
 
+
 /* BOTTOM */
 .sidebar-bottom {
     margin-top: auto;
@@ -81,7 +82,7 @@ body {
 }
 
 .sidebar-bottom hr {
-    border: 1px solid rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,255,255,0.5);
     margin-bottom: 10px;
 }
 
@@ -90,16 +91,52 @@ body {
     width: 70px;
 }
 
-.sidebar.close span:not(.icon) {
-    display: none;
-}
-
+.sidebar.close .text,
 .sidebar.close .menu-title {
     display: none;
 }
 
 .sidebar.close a {
     justify-content: center;
+}
+
+/* DEFAULT (sidebar terbuka) */
+.darkmode-row{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* =========================
+   SIDEBAR CLOSE MODE
+========================= */
+.sidebar.close .darkmode-row{
+    justify-content: center;
+}
+
+/* sembunyikan text saat close */
+.sidebar.close .darkmode-row .text{
+    display: none;
+}
+
+/* HILANGKAN SWITCH saat close */
+.sidebar.close .darkmode-row .switch{
+    display: none;
+}
+
+/* ICON tetap tampil */
+.sidebar.close .darkmode-row .icon{
+    display: flex;
+    justify-content: center;
+    width: 40px;
+}
+
+.sidebar-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px;
+    margin:5px 10px;
 }
 
 /* MAIN */
@@ -692,20 +729,194 @@ body {
     background: #256f47;
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE SIDEBAR
+========================= */
 
-@media(max-width: 768px){
+.mobile-toggle{
+    display:none;
+    background:none;
+    border:none;
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+}
 
-    .lapak-modal-content{
-        padding: 20px;
+.sidebar-overlay{
+    display:none;
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,0.4);
+
+    z-index:9998;
+}
+
+.sidebar-overlay.show{
+    display:block;
+}
+
+@media (max-width:1024px) and (min-width:768px){
+
+    .sidebar{
+        width:70px;
     }
 
-    .lapak-modal-grid{
+    .sidebar.close{
+        width:70px;
+    }
+
+    .sidebar.close .text,
+    .sidebar.close .menu-title{
+        display:none;
+    }
+
+    .sidebar.close a{
+        justify-content:center;
+    }
+
+    .sidebar:not(.close){
+        width:220px;
+    }
+
+    .sidebar:not(.close) .text,
+    .sidebar:not(.close) .menu-title{
+        display:inline;
+    }
+
+    .sidebar:not(.close) a{
+        justify-content:flex-start;
+    }
+
+    .lapak-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width:767px){
+
+    .sidebar{
+        position:fixed;
+        top:0;
+        left:-250px;
+
+        width:250px;
+        height:100vh;
+
+        z-index:9999;
+        transition:.3s;
+    }
+
+    .sidebar.show{
+        left:0;
+    }
+
+    /* Saat muncul, selalu full */
+    .sidebar.close{
+        width:250px;
+    }
+
+    .sidebar.close .text,
+    .sidebar.close .menu-title{
+        display:inline;
+    }
+
+    .sidebar.close a{
+        justify-content:flex-start;
+    }
+
+    .mobile-toggle{
+        display:block;
+    }
+
+    .brand{
+        font-size:15px;
+        margin-left: -10px;
+    }
+
+    .navbar{
+        justify-content:flex-start;
+    }
+
+    .right{
+        display:none;
+    }.lapak-grid {
         grid-template-columns: 1fr;
     }
+}
 
-    .lapak-modal-img{
-        height: 220px;
+/* =========================
+   RESPONSIVE MODAL DETAIL LAPAK (FIX)
+========================= */
+
+@media (max-width: 768px) {
+
+    .lapak-modal-content{
+        padding: 16px;
+        max-width: 95%;
     }
 
+    /* ubah jadi 1 kolom */
+    .lapak-modal-grid{
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    /* gambar jangan terlalu tinggi */
+    .lapak-modal-img{
+        height: 200px;
+        border-radius: 12px;
+    }
+
+    /* judul lebih kecil */
+    .lapak-modal-title{
+        font-size: 20px;
+        margin-bottom: 12px;
+        text-align: center;
+    }
+
+    .lapak-detail-group{
+        gap: 12px;
+    }
+
+    .lapak-label{
+        font-size: 13px;
+    }
+
+    .lapak-desc-box{
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    /* tombol full rapi di bawah */
+    .lapak-booking-btn{
+        margin-top: 16px;
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .lapak-close{
+        top: 10px;
+        right: 10px;
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .lapak-modal-img{
+        height: 160px;
+    }
+
+    .lapak-modal-content{
+        border-radius: 16px;
+    }
+
+    .lapak-booking-btn{
+        border-radius: 10px;
+    }
 }
