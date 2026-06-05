@@ -236,7 +236,16 @@ input:checked + .slider:before {
     border: 1px solid #334155;
 }
 
-.dark .payment-box,
+.dark .payment-box {
+    background: transparent;
+}
+
+.dark .form-group select,
+.dark .form-group input{
+    background: #1e293b;
+    border: 1px solid #ffffff;
+}
+
 .dark .booking-note {
     background: #0f172a;
     border-color: #334155;
@@ -256,7 +265,8 @@ input:checked + .slider:before {
 .dark .form-group label,
 .dark .payment-section h3,
 .dark .user-section h3,
-.dark .booking-form-section h3 {
+.dark .booking-form-section h3,
+.dark .form-group select {
     color: #f1f5f9;
 }
 
