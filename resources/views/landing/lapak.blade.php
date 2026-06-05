@@ -157,6 +157,24 @@ function fetchLapak() {
             }
 
             data.forEach(lapak => {
+                let deskripsiArray = lapak.deskripsi
+                    ? lapak.deskripsi.split('\n').filter(item => item.trim() !== '')
+                    : [];
+
+                let deskripsiPreview = '';
+
+                deskripsiArray.slice(0, 3).forEach(item => {
+                    deskripsiPreview += `<li>${item}</li>`;
+                });
+
+                if(deskripsiArray.length > 3){
+                    deskripsiPreview += `
+                        <li class="more-desc">
+                            +${deskripsiArray.length - 3} lainnya
+                        </li>
+                    `;
+                }
+                
                 container.innerHTML += `
                     <article class="card fade-card">
 
@@ -169,7 +187,9 @@ function fetchLapak() {
 
                             <p><strong>Harga:</strong> Rp ${Number(lapak.harga).toLocaleString()}</p>
 
-                            <p>${lapak.deskripsi}</p>
+                            <ul class="desc-list">
+                                ${deskripsiPreview}
+                            </ul>
                         </div>
 
                         <div class="card-footer">
@@ -208,7 +228,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (status) status.addEventListener("change", fetchLapak);
-    if (jenis) status.addEventListener("change", fetchLapak);
+    if (jenis) jenis.addEventListener("change", fetchLapak);
 });
 
 /* =========================

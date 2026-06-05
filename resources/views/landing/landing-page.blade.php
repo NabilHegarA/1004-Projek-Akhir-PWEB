@@ -106,7 +106,7 @@
                         @foreach ($rekapLapak as $data)
 
                             <tr>
-                                <td>Kolam {{ $loop->iteration }}</td>
+                                <td>Kolam {{ chr(64 + $loop->iteration) }}</td>
                                 <td>{{ $data['jenis'] }}</td>
                                 <td>{{ $data['total'] }}</td>
                                 <td>
