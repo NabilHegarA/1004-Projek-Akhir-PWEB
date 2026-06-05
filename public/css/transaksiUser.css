@@ -11,13 +11,15 @@ body {
 
 /* SIDEBAR */
 .sidebar {
+    position: sticky;
+    top: 0;
     width: 220px;
     height: 100vh;
     background: #1f3c2c;
     color: white;
     display: flex;
     flex-direction: column;
-    transition: 0.3s;
+    transition: width 0.3s ease;
 }
 
 /* HEADER */
