@@ -168,6 +168,20 @@ body {
     font-weight: bold;
 }
 
+.right{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+}
+
+.right span{
+    font-size:13px;
+}
+
+.right strong{
+    font-size:15px;
+}
+
 .content {
     flex: 1;
     position: relative;

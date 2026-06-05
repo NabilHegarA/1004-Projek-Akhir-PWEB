@@ -173,6 +173,20 @@ body {
     font-weight: bold;
 }
 
+.right{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+}
+
+.right span{
+    font-size:13px;
+}
+
+.right strong{
+    font-size:15px;
+}
+
 .content {
     padding: 10px;
     background: #f4f6f9;
@@ -315,6 +329,29 @@ body {
     color: red;
 }
 
+.btn-detail{
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    background: #2e8b57;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-detail:hover{
+    background: #256f47;
+}
+
+.more-desc{
+    color: #2e8b57;
+    font-weight: 600;
+    list-style: none;
+}
+
 .card button {
     margin-top: auto;
     padding: 10px;
@@ -337,6 +374,124 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 9999;
+}
+
+/* =========================
+   MODAL DETAIL LAPAK
+========================= */
+
+#lapakModal{
+    display:none;
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,0.55);
+
+    justify-content:center;
+    align-items:center;
+
+    z-index:99999;
+
+    padding:20px;
+}
+
+#lapakModal.active{
+    display:flex;
+}
+
+.lapak-modal-content{
+    background:#fff;
+
+    width:100%;
+    max-width:900px;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    position:relative;
+
+    max-height:90vh;
+    overflow-y:auto;
+}
+
+.lapak-modal-grid{
+    display:grid;
+    grid-template-columns:350px 1fr;
+    gap:25px;
+}
+
+.lapak-modal-img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    border-radius:16px;
+}
+
+.lapak-modal-title{
+    color:#1f3c2c;
+    margin-bottom:20px;
+}
+
+.lapak-detail-group{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.lapak-label{
+    font-size:13px;
+    color:#777;
+    margin-bottom:5px;
+}
+
+.lapak-desc-box{
+    background:#f5f5f5;
+    padding:12px;
+    border-radius:10px;
+    line-height:1.6;
+}
+
+.lapak-edit-btn,
+.lapak-booking-btn{
+    display:block;
+
+    margin-top:20px;
+
+    text-align:center;
+    text-decoration:none;
+
+    background:#2e8b57;
+    color:white;
+
+    padding:12px;
+
+    border-radius:12px;
+
+    font-weight:600;
+}
+
+.lapak-edit-btn:hover,
+.lapak-booking-btn:hover{
+    background:#256f47;
+}
+
+.lapak-close{
+    position:absolute;
+
+    top:15px;
+    right:15px;
+
+    width:40px;
+    height:40px;
+
+    border:none;
+    border-radius:50%;
+
+    background:#f0f0f0;
+
+    cursor:pointer;
+    font-size:18px;
 }
 
 .modal-content {
@@ -445,322 +600,192 @@ body {
     letter-spacing: 0.5px;
 }
 
-@media (max-width: 1024px) {
-    .cards {
+/* =========================
+   MOBILE SIDEBAR
+========================= */
+
+.mobile-toggle{
+    display:none;
+    background:none;
+    border:none;
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+}
+
+.sidebar-overlay{
+    display:none;
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,0.4);
+
+    z-index:9998;
+}
+
+.sidebar-overlay.show{
+    display:block;
+}
+
+@media (max-width:1024px) and (min-width:768px){
+
+    .sidebar{
+        width:70px;
+    }
+
+    .sidebar.close{
+        width:70px;
+    }
+
+    .sidebar.close .text,
+    .sidebar.close .menu-title{
+        display:none;
+    }
+
+    .sidebar.close a{
+        justify-content:center;
+    }
+
+    .sidebar:not(.close){
+        width:220px;
+    }
+
+    .sidebar:not(.close) .text,
+    .sidebar:not(.close) .menu-title{
+        display:inline;
+    }
+
+    .sidebar:not(.close) a{
+        justify-content:flex-start;
+    }
+
+    .lapak-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .brand {
-        font-size: 16px;
-    }
 }
 
-@media (max-width: 768px) {
-    .cards {
+@media (max-width:767px){
+
+    .sidebar{
+        position:fixed;
+        top:0;
+        left:-250px;
+
+        width:250px;
+        height:100vh;
+
+        z-index:9999;
+        transition:.3s;
+    }
+
+    .sidebar.show{
+        left:0;
+    }
+
+    /* Saat muncul, selalu full */
+    .sidebar.close{
+        width:250px;
+    }
+
+    .sidebar.close .text,
+    .sidebar.close .menu-title{
+        display:inline;
+    }
+
+    .sidebar.close a{
+        justify-content:flex-start;
+    }
+
+    .mobile-toggle{
+        display:block;
+    }
+
+    .brand{
+        font-size:15px;
+        margin-left: -10px;
+    }
+
+    .navbar{
+        justify-content:flex-start;
+    }
+
+    .right{
+        display:none;
+    }
+    .lapak-grid {
         grid-template-columns: 1fr;
     }
 
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        height: auto;
+/* =========================
+   RESPONSIVE MODAL DETAIL LAPAK (FIX)
+========================= */
+
+    .lapak-modal-content{
+        padding: 16px;
+        max-width: 95%;
+    }
+
+    /* ubah jadi 1 kolom */
+    .lapak-modal-grid{
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    /* gambar jangan terlalu tinggi */
+    .lapak-modal-img{
+        height: 200px;
+        border-radius: 12px;
+    }
+
+    /* judul lebih kecil */
+    .lapak-modal-title{
+        font-size: 20px;
+        margin-bottom: 12px;
+        text-align: center;
+    }
+
+    .lapak-detail-group{
+        gap: 12px;
+    }
+
+    .lapak-label{
+        font-size: 13px;
+    }
+
+    .lapak-desc-box{
+        font-size: 13px;
         padding: 10px;
-        gap: 5px;
     }
 
-    .navbar .left,
-    .navbar .right {
-        width: 100%;
-        justify-content: flex-start;
+    /* tombol full rapi di bawah */
+    .lapak-booking-btn{
+        margin-top: 16px;
+        font-size: 14px;
+        padding: 12px;
     }
 
-    .left img {
-        width: 40px;
-    }
-
-    .brand {
+    .lapak-close{
+        top: 10px;
+        right: 10px;
+        width: 32px;
+        height: 32px;
         font-size: 14px;
     }
 }
 
-/* ================= MODAL DETAIL LAPAK ================= */
-
-.lapak-modal{
-    position: fixed;
-    inset: 0;
-
-    background: rgba(0,0,0,0.6);
-
-    display: none;
-    justify-content: center;
-    align-items: center;
-
-    z-index: 99999;
-
-    padding: 20px;
-}
-
-.lapak-modal.active{
-    display: flex;
-}
-
-.lapak-modal-content{
-    width: 100%;
-    max-width: 1000px;
-
-    background: white;
-    border-radius: 24px;
-
-    padding: 30px;
-    position: relative;
-
-    animation: fadeIn 0.25s ease;
-}
-
-.lapak-close{
-    position: absolute;
-    top: 15px;
-    right: 15px;
-
-    width: 38px;
-    height: 38px;
-
-    border: none;
-    border-radius: 50%;
-
-    background: #f1f1f1;
-
-    cursor: pointer;
-    font-size: 18px;
-}
-
-.lapak-modal-grid{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-}
-
-.lapak-modal-img{
-    width: 100%;
-    height: 350px;
-
-    object-fit: cover;
-    border-radius: 18px;
-}
-
-.lapak-modal-title{
-    font-size: 28px;
-    color: #2e8b57;
-    margin-bottom: 20px;
-}
-
-.lapak-detail-group{
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-
-.lapak-label{
-    font-weight: bold;
-    color: #2e8b57;
-    margin-bottom: 6px;
-}
-
-.lapak-desc-box{
-    background: #f5f5f5;
-    padding: 14px;
-    border-radius: 12px;
-    line-height: 1.7;
-}
-
-.lapak-booking-btn{
-    margin-top: 25px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 100%;
-
-    padding: 14px;
-
-    background: #2e8b57;
-    color: white;
-
-    text-decoration: none;
-    border-radius: 14px;
-
-    font-weight: bold;
-
-    transition: 0.2s;
-}
-
-.lapak-booking-btn:hover{
-    background: #256f47;
-}
-
-/* RESPONSIVE */
-
-@media(max-width: 768px){
-
-    .lapak-modal-grid{
-        grid-template-columns: 1fr;
-    }
+@media (max-width: 480px) {
 
     .lapak-modal-img{
-        height: 250px;
+        height: 160px;
     }
 
-}
+    .lapak-modal-content{
+        border-radius: 16px;
+    }
 
-/* ================= MODAL DETAIL LAPAK ================= */
-
-#lapakModal{
-    position: fixed;
-    inset: 0;
-
-    background: rgba(0,0,0,0.55);
-
-    display: none;
-    justify-content: center;
-    align-items: center;
-
-    z-index: 99999;
-
-    padding: 20px;
-}
-
-#lapakModal.active{
-    display: flex;
-}
-
-/* BOX */
-
-.lapak-modal-content{
-    width: 100%;
-    max-width: 780px;
-
-    background: white;
-    border-radius: 20px;
-
-    padding: 24px;
-    position: relative;
-
-    animation: fadeIn 0.25s ease;
-
-    max-height: 90vh;
-    overflow-y: auto;
-}
-
-/* CLOSE */
-
-.lapak-close{
-    position: absolute;
-    top: 14px;
-    right: 14px;
-
-    width: 34px;
-    height: 34px;
-
-    border: none;
-    border-radius: 50%;
-
-    background: #f1f1f1;
-
-    cursor: pointer;
-    font-size: 16px;
-}
-
-/* GRID */
-
-.lapak-modal-grid{
-    display: grid;
-    grid-template-columns: 320px 1fr;
-    gap: 24px;
-    align-items: start;
-}
-
-/* IMAGE */
-
-.lapak-modal-img{
-    width: 100%;
-    height: 240px;
-
-    object-fit: cover;
-    border-radius: 16px;
-}
-
-/* TITLE */
-
-.lapak-modal-title{
-    font-size: 24px;
-    color: #2e8b57;
-    margin-bottom: 18px;
-}
-
-/* DETAIL */
-
-.lapak-detail-group{
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-}
-
-.lapak-label{
-    font-size: 14px;
-    font-weight: bold;
-    color: #2e8b57;
-    margin-bottom: 4px;
-}
-
-.lapak-desc-box{
-    background: #f5f5f5;
-    padding: 12px;
-    border-radius: 12px;
-    font-size: 14px;
-    line-height: 1.6;
-}
-
-/* BUTTON */
-.lapak-edit-btn{
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 12px;
-    background: #2e8b57;
-    color: white;
-    text-decoration: none;
-    border-radius: 12px;
-    font-weight: bold;
-    font-size: 16px;
-    transition: 0.2s;
-}
-
-.lapak-edit-btn:hover{
-    background: #256f47;
-}
-
-.btn-detail{
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 12px;
-    background: #2e8b57;
-    color: white;
-    font-weight: 600;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.btn-detail:hover{
-    background: #256f47;
-}
-
-.more-desc{
-    color: #2e8b57;
-    font-weight: 600;
-    list-style: none;
+    .lapak-booking-btn{
+        border-radius: 10px;
+    }
 }

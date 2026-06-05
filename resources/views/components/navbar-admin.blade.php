@@ -10,7 +10,8 @@
 
     <div class="right">
         @if(auth()->check())
-            <p>Selamat datang, {{ auth()->user()->name }}</p>
+            <span>Selamat Datang,</span>
+            <strong>{{ auth()->user()->name }}</strong>
         @endif
     </div>
 </div>

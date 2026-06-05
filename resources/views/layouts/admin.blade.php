@@ -35,6 +35,7 @@
 <body>
 
     @include('components.sidebar-admin')
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
 
     <div class="main">
         @include('components.navbar-admin')
@@ -96,22 +97,10 @@
             if (sidebar.classList.contains("show")) {
                 sidebar.classList.remove("close");
             } else {
-                sidebar.classList.add("close");
+                sidebar.classList.remove("close");
+                sidebar.classList.add("show");
             }
         }
-
-        // HOVER EXPAND
-        sidebar.addEventListener("mouseenter", () => {
-            if (!pinned) {
-                sidebar.classList.remove("close");
-            }
-        });
-
-        sidebar.addEventListener("mouseleave", () => {
-            if (!pinned) {
-                sidebar.classList.add("close");
-            }
-        });
 
         function openModal() {
             document.getElementById("logoutModal").style.display = "flex";
@@ -159,23 +148,6 @@
             } else {
                 html.classList.remove("dark");
                 if (toggle) toggle.checked = false;
-            }
-        });
-
-        document.addEventListener("click", function(e) {
-
-            const sidebar =
-                document.getElementById("sidebar");
-
-            const toggleBtn =
-                document.querySelector(".toggle-btn");
-
-            if (
-                window.innerWidth <= 700 &&
-                !sidebar.contains(e.target) &&
-                !toggleBtn.contains(e.target)
-            ) {
-                sidebar.classList.remove("show");
             }
         });
         </script>

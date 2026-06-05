@@ -175,6 +175,20 @@ body {
     font-weight: bold;
 }
 
+.right{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+}
+
+.right span{
+    font-size:13px;
+}
+
+.right strong{
+    font-size:15px;
+}
+
 /* CONTENT */
 .content {
     flex: 1;
@@ -418,11 +432,11 @@ body {
 }
 
 .detail-modal{
-    width: 1100px;
-    max-width: 98%;
+    width: 900px;
+    max-width: 95%;
     background: white;
-    border-radius: 22px;
-    padding: 35px;
+    border-radius: 20px;
+    padding: 28px;
     position: relative;
     animation: popup 0.3s ease;
 }
@@ -442,14 +456,14 @@ body {
 
 .detail-title{
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     color: #2f7a4d;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .detail-content{
     display: flex;
-    gap: 30px;
+    gap: 20px;
 }
 
 .detail-column{
@@ -457,21 +471,21 @@ body {
 }
 
 .detail-box{
-    margin-bottom: 18px;
+    margin-bottom: 14px;
 }
 
 .detail-box label{
     display: block;
     margin-bottom: 6px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: bold;
     color: #2f7a4d;
 }
 
 .detail-box p{
     background: #f5f5f5;
-    font-size: 14px;
-    padding: 12px;
+    font-size: 13px;
+    padding: 10px;
     border-radius: 10px;
     color: #333;
 }
@@ -482,65 +496,12 @@ body {
 
 .detail-bukti-img{
     width: 100%;
-    height: 320px;
+    max-height: 200px;
     object-fit: cover;
     border-radius: 14px;
     border: 1px solid #ddd;
 }
 
-/* ================= ANIMATION ================= */
-@keyframes popup{
-    from{
-        opacity: 0;
-        transform: scale(0.85);
-    }
-    to{
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-/* ================= RESPONSIVE ================= */
-
-@media(max-width: 1200px){
-    .card-grid{
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media(max-width: 900px){
-    .card-grid{
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .detail-content{
-        flex-direction: column;
-        gap: 20px;
-    }
-}
-
-@media(max-width: 600px){
-    .card-grid{
-        grid-template-columns: 1fr;
-    }
-    .tabs{
-        flex-wrap: wrap;
-    }
-    .search-box{
-        flex-direction: column;
-    }
-    .search-box button{
-        height: 45px;
-    }
-    .detail-modal{
-        padding: 25px;
-    }
-    .detail-title{
-        font-size: 24px;
-    }
-    .detail-bukti-img{
-        height: 220px;
-    }
-}
 /* ================= PREVIEW IMAGE ================= */
 
 .img-preview-overlay{
@@ -725,51 +686,6 @@ body {
     transform: translateY(-1px);
 }
 
-/* ================= ANIMATION ================= */
-@keyframes popIn {
-    from {
-        opacity: 0;
-        transform: scale(0.85);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-/* ================= ANIMATION ================= */
-
-@keyframes fadePreview{
-
-    from{
-        opacity: 0;
-        transform: scale(0.95);
-    }
-
-    to{
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-/* ================= RESPONSIVE ================= */
-
-@media(max-width: 768px){
-
-    .img-preview-overlay{
-        padding: 15px;
-    }
-
-    .img-preview-close{
-        top: -10px;
-        right: -10px;
-        width: 38px;
-        height: 38px;
-        font-size: 16px;
-    }
-
-}
-
 /* BUTTON */
 .btn {
     margin-top: 15px;
@@ -817,18 +733,6 @@ body {
     box-shadow: 0 3px 10px rgba(0,0,0,0.08);
 }
 
-/* ANIMASI */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 /* BUTTON */
 .modal-actions {
     margin-top: 20px;
@@ -858,4 +762,424 @@ body {
 
 .btn-logout:hover {
     background: #256f47;
+}
+
+/* =========================
+   MOBILE SIDEBAR
+========================= */
+
+.mobile-toggle{
+    display:none;
+    background:none;
+    border:none;
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+}
+
+.sidebar-overlay{
+    display:none;
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,0.4);
+
+    z-index:9998;
+}
+
+.sidebar-overlay.show{
+    display:block;
+}
+
+/* ================= ANIMATION ================= */
+
+/* ANIMASI */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadePreview{
+
+    from{
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes popup{
+    from{
+        opacity: 0;
+        transform: scale(0.85);
+    }
+    to{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width:1024px) and (min-width:768px){
+
+    .sidebar{
+        width:70px;
+    }
+
+    .sidebar.close{
+        width:70px;
+    }
+
+    .sidebar.close .text,
+    .sidebar.close .menu-title{
+        display:none;
+    }
+
+    .sidebar.close a{
+        justify-content:center;
+    }
+
+    .sidebar:not(.close){
+        width:220px;
+    }
+
+    .sidebar:not(.close) .text,
+    .sidebar:not(.close) .menu-title{
+        display:inline;
+    }
+
+    .sidebar:not(.close) a{
+        justify-content:flex-start;
+    }
+
+    .content{
+        padding: 18px;
+    }
+
+    .brand{
+        font-size: 16px;
+    }
+
+    .right span{
+        font-size: 12px;
+    }
+
+    .right strong{
+        font-size: 14px;
+    }
+
+    .tabs{
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .tab{
+        flex: 1 1 30%;
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+
+    .search-box{
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .search-box input{
+        flex: 1 1 60%;
+    }
+
+    .search-box button{
+        flex: 1 1 35%;
+    }
+
+    .filter-box{
+        flex-wrap: wrap;
+    }
+
+    .filter-box select,
+    .filter-box input{
+        flex: 1 1 45%;
+    }
+
+    .card-grid{
+        grid-template-columns: repeat(3, 1fr); /* dari 5 → 2 kolom */
+        gap: 16px;
+    }
+
+    .card-image{
+        height: 170px;
+    }
+
+    .card-body h3{
+        font-size: 18px;
+    }
+
+    .card-body p{
+        font-size: 13px;
+    }
+
+    .btn{
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    /* ================= MODAL ================= */
+    .detail-modal{
+        width: 95%;
+        padding: 22px;
+    }
+
+    .reject-modal-box{
+        max-width: 500px;
+    }
+
+}
+
+@media (max-width:767px){
+
+    .sidebar{
+        position:fixed;
+        top:0;
+        left:-250px;
+
+        width:250px;
+        height:100vh;
+
+        z-index:9999;
+        transition:.3s;
+    }
+
+    .sidebar.show{
+        left:0;
+    }
+
+    /* Saat muncul, selalu full */
+    .sidebar.close{
+        width:250px;
+    }
+
+    .sidebar.close .text,
+    .sidebar.close .menu-title{
+        display:inline;
+    }
+
+    .sidebar.close a{
+        justify-content:flex-start;
+    }
+
+    .mobile-toggle{
+        display:block;
+    }
+
+    .brand{
+        font-size:15px;
+        margin-left: -10px;
+    }
+
+    .navbar{
+        justify-content:flex-start;
+    }
+
+    .right{
+        display:none;
+    }
+
+    .content{
+        padding:15px;
+    }
+
+    /* TAB */
+    .tabs{
+        gap:6px;
+        margin:15px 0;
+    }
+
+    .tab{
+        flex:1;
+        padding:8px 6px;
+        font-size:12px;
+        border-radius:6px;
+    }
+
+    /* SEARCH */
+    .search-box{
+        flex-direction:column;
+        gap:8px;
+    }
+
+    .search-box input,
+    .search-box button{
+        width:100%;
+    }
+
+    /* FILTER */
+    .filter-box{
+        flex-direction:column;
+        gap:8px;
+    }
+
+    .filter-box select,
+    .filter-box input{
+        width:100%;
+    }
+
+    /* CARD */
+    .card-grid{
+        grid-template-columns:1fr;
+        gap:15px;
+    }
+
+    .card-image{
+        height:180px;
+    }
+
+    .card-body{
+        padding:14px;
+    }
+
+    .card-body h3{
+        font-size:17px;
+    }
+
+    .card-body p{
+        font-size:13px;
+    }
+
+    .status{
+        font-size:11px;
+        padding:5px 12px;
+    }
+
+    .btn{
+        font-size:13px;
+        padding:10px;
+    }
+
+    .detail-icon{
+        width:32px;
+        height:32px;
+        font-size:16px;
+    }
+
+    /* EMPTY */
+    .empty-message{
+        padding:15px;
+        font-size:13px;
+    }
+
+    /* ================= DETAIL MODAL ================= */
+
+    .detail-modal-overlay{
+        padding:10px;
+    }
+
+    .detail-modal{
+        width:100%;
+        max-width:100%;
+        padding:16px;
+        border-radius:16px;
+        max-height:85vh;
+        overflow-y:auto;
+    }
+
+    .detail-title{
+        font-size:16px;
+        margin-bottom:15px;
+        padding-right:25px;
+    }
+
+    .detail-content{
+        flex-direction:column;
+        gap:12px;
+    }
+
+    .detail-column{
+        width:100%;
+    }
+
+    .detail-box{
+        margin-bottom:10px;
+    }
+
+    .detail-box label{
+        font-size:12px;
+    }
+
+    .detail-box p{
+        font-size:12px;
+        padding:9px 10px;
+        word-break:break-word;
+    }
+
+    .detail-bukti-img{
+        max-height:180px;
+    }
+
+    .close-detail{
+        width:32px;
+        height:32px;
+        font-size:14px;
+        top:10px;
+        right:10px;
+    }
+
+    /* ================= REJECT MODAL ================= */
+
+    .reject-modal-overlay{
+        padding:12px;
+    }
+
+    .reject-modal-box{
+        width:100%;
+        max-width:100%;
+        padding:18px 15px 15px;
+        border-radius:14px;
+    }
+
+    .reject-modal-box h3{
+        font-size:16px;
+        margin-bottom:12px;
+        padding-right:25px;
+    }
+
+    .reject-textarea{
+        min-height:100px;
+        font-size:13px;
+        padding:10px;
+    }
+
+    .reject-btn{
+        margin-top:12px;
+        padding:10px;
+        font-size:13px;
+    }
+
+    .reject-close{
+        width:30px;
+        height:30px;
+        top:8px;
+        right:8px;
+        font-size:14px;
+    }
 }

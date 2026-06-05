@@ -13,15 +13,14 @@ body {
 }
 
 .sidebar {
-    position: sticky;
-    top: 0;
     width: 220px;
     height: 100vh;
     background: #1f3c2c;
     color: white;
     display: flex;
     flex-direction: column;
-    transition: width 0.3s ease;
+    transition: 0.3s;
+    flex-shrink: 0;
 }
 
 .sidebar-header {
@@ -44,8 +43,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    gap: 5px;
 }
 
 .sidebar a {
@@ -57,6 +54,7 @@ body {
     padding: 12px;
     border-radius: 8px;
     margin: 5px 10px;
+    transition: 0.2s;
 }
 
 .sidebar a:hover {
@@ -67,10 +65,36 @@ body {
     background: #2e8b57;
 }
 
+/* ICON */
 .icon {
     width: 40px;
     text-align: center;
     font-size: 18px;
+}
+
+/* BOTTOM */
+.sidebar-bottom {
+    margin-top: auto;
+    padding: 10px;
+}
+
+.sidebar-bottom hr {
+    border: 1px solid rgba(255,255,255,0.5);
+    margin-bottom: 10px;
+}
+
+/* COLLAPSE */
+.sidebar.close {
+    width: 70px;
+}
+
+.sidebar.close .text,
+.sidebar.close .menu-title {
+    display: none;
+}
+
+.sidebar.close a {
+    justify-content: center;
 }
 
 /* DEFAULT (sidebar terbuka) */
@@ -112,37 +136,6 @@ body {
     margin:5px 10px;
 }
 
-.sidebar-bottom {
-    margin-top: auto;
-    padding: 10px;
-}
-
-.sidebar-bottom hr {
-    border: 1px solid rgba(255,255,255,0.6);
-    margin-bottom: 10px;
-}
-
-.sidebar.close {
-    width: 70px;
-    min-width: 70px;
-}
-
-.text {
-    display: inline;
-}
-
-.sidebar.close .text {
-    display: none;
-}
-
-.sidebar.close .menu-title {
-    display: none;
-}
-
-.sidebar.close a {
-    justify-content: center;
-}
-
 .main {
     flex: 1;
     display: flex;
@@ -175,6 +168,20 @@ body {
     white-space: nowrap;
     font-size: 18px;
     font-weight: bold;
+}
+
+.right{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+}
+
+.right span{
+    font-size:13px;
+}
+
+.right strong{
+    font-size:15px;
 }
 
 .content {
@@ -320,6 +327,7 @@ body {
 }
 
 .table-header input,
+.table-header select,
 .table-header button {
     padding: 10px 14px;
     border-radius: 10px;
@@ -334,7 +342,8 @@ body {
 }
 
 .table-wrapper {
-    overflow-x: auto;
+    max-height: 320px;
+    overflow-y: auto;
 }
 
 table {
@@ -346,6 +355,13 @@ table th {
     background: #f5f5f5;
     padding: 14px;
     text-align: left;
+}
+
+table thead th {
+    position: sticky;
+    top: 0;
+    background: #f5f5f5;
+    z-index: 2;
 }
 
 table td {
@@ -443,7 +459,6 @@ table td {
     background: #256f47;
 }
 
-
 /* =========================
    MOBILE SIDEBAR
 ========================= */
@@ -474,10 +489,12 @@ table td {
 
 @media (max-width:1024px) and (min-width:768px){
 
+
     .sidebar{
         width:70px;
     }
 
+    /* kalau close */
     .sidebar.close{
         width:70px;
     }
@@ -492,6 +509,7 @@ table td {
         justify-content:center;
     }
 
+    /* open state */
     .sidebar:not(.close){
         width:220px;
     }
@@ -505,34 +523,52 @@ table td {
         justify-content:flex-start;
     }
 
-    .cards{
-        grid-template-columns:repeat(2,1fr);
+    .table-card{
+        padding: 20px;
     }
 
-    .sidebar{
-        width:180px;
+    .main{
+        min-width:0;
     }
 
     .content{
-        padding:18px;
+        min-width:0;
+        overflow-x:hidden;
+        padding: 16px;
     }
 
-    .table-card{
-        padding:20px;
+    .cards{
+        display:grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap:16px;
     }
-
 }
+
+/* =========================
+   MOBILE SIDEBAR FIX ADMIN
+========================= */
 
 @media (max-width:767px){
 
+    body{
+        height:auto;
+        overflow-x:hidden;
+        overflow-y:auto;
+    }
+
+    .main{
+        flex:1;
+        width:100%;
+        min-width:0;
+    }
+
+    /* SIDEBAR */
     .sidebar{
         position:fixed;
         top:0;
         left:-250px;
-
         width:250px;
         height:100vh;
-
         z-index:9999;
         transition:.3s;
     }
@@ -541,8 +577,8 @@ table td {
         left:0;
     }
 
-    /* Saat muncul, selalu full */
     .sidebar.close{
+        left:-250px;
         width:250px;
     }
 
@@ -555,25 +591,108 @@ table td {
         justify-content:flex-start;
     }
 
+    /* OVERLAY */
+    .sidebar-overlay{
+        display:none;
+        position:fixed;
+        inset:0;
+        background:rgba(0,0,0,0.4);
+        z-index:9998;
+    }
+
+    .sidebar-overlay.show{
+        display:block;
+    }
+
+    /* NAVBAR */
     .mobile-toggle{
         display:block;
     }
 
-    .brand{
-        font-size:15px;
-        margin-left: -10px;
-    }
-
     .navbar{
         justify-content:flex-start;
+        padding:10px 12px;
+        gap:10px;
+        height:auto;
+        min-height:60px;
+    }
+
+    .left{
+        gap:8px;
+        min-width:0;
+    }
+
+    .left img{
+        width:40px;
+    }
+
+    .brand{
+        font-size:13px;
+        margin-left:0;
+        white-space:normal;
+        line-height:1.3;
     }
 
     .right{
         display:none;
     }
 
+    /* CONTENT */
+    .content{
+        padding:16px;
+        width:100%;
+    }
+
+    /* HEADER */
+    .dashboard-header{
+        margin-bottom:16px;
+    }
+
+    .dashboard-header h2{
+        margin-top:0;
+        font-size:22px;
+    }
+
+    .dashboard-header p{
+        font-size:13px;
+    }
+
+    /* BUTTON */
+    .btn-tambah{
+        width:100%;
+        text-align:center;
+        display:block;
+    }
+
+    /* CARD */
     .cards{
         grid-template-columns:1fr;
+        gap:16px;
+    }
+    
+    .card h3{
+        font-size:15px;
+    }
+
+    .card h1{
+        font-size:32px;
+    }
+
+    /* WEATHER */
+    .weather-top{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    #temp{
+        font-size:34px;
+    }
+
+    /* TABLE */
+    .table-card{
+        margin-top:20px;
+        padding:16px;
+        border-radius:12px;
     }
 
     .table-header{
@@ -584,62 +703,26 @@ table td {
 
     .table-header form{
         flex-direction:column;
-        width:100%;
+        gap:10px;
     }
 
     .table-header input,
+    .table-header select,
     .table-header button{
         width:100%;
     }
 
-    .content{
-        padding:15px;
-    }
-}
-
-@media (max-width:480px){
-
-    .content{
-        padding:10px;
-    }
-
-    .dashboard-header h2{
-        font-size:20px;
-        margin-top:0;
-    }
-
-    .dashboard-header p{
-        font-size:12px;
-    }
-
-    .btn-tambah{
-        width:100%;
-        text-align:center;
-    }
-
-    .card{
-        padding:15px;
-    }
-
-    .card h1{
-        font-size:22px;
-        word-break:break-word;
-    }
-
-    .card h3{
-        font-size:14px;
+    .table-wrapper{
+        overflow-x:auto;
     }
 
     table{
-        min-width:700px;
+        min-width:600px;
     }
 
-    .table-card{
-        padding:15px;
-    }
-
-    .status{
-        font-size:11px;
-        padding:4px 8px;
+    /* MODAL */
+    .modal-content{
+        width:calc(100% - 30px);
+        max-width:350px;
     }
 }

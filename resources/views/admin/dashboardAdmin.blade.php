@@ -52,6 +52,14 @@
             <h3>Daftar Transaksi</h3>
 
             <form method="GET">
+                <select name="status" class="filter-input">
+                    <option value="">Semua Status</option>
+                    <option value="pending" {{ request('status')=='pending' ? 'selected' : '' }}>Menunggu</option>
+                    <option value="confirmed" {{ request('status')=='confirmed' ? 'selected' : '' }}>Dikonfirmasi</option>
+                    <option value="canceled" {{ request('status')=='canceled' ? 'selected' : '' }}>Dibatalkan</option>
+                    <option value="rejected" {{ request('status')=='rejected' ? 'selected' : '' }}>Ditolak</option>
+                    <option value="completed" {{ request('status')=='completed' ? 'selected' : '' }}>Selesai</option>
+                </select>
                 <input
                     type="date"
                     name="tanggal"
@@ -95,7 +103,17 @@
 
                             <td>
                                 <span class="status {{ $trx->status }}">
-                                    {{ ucfirst($trx->status) }}
+                                    @php
+                                        $statusLabel = [
+                                            'pending' => 'Menunggu',
+                                            'confirmed' => 'Dikonfirmasi',
+                                            'rejected' => 'Ditolak',
+                                            'canceled' => 'Dibatalkan',
+                                            'completed' => 'Selesai',
+                                        ];
+                                    @endphp
+
+                                    {{ $statusLabel[$trx->status] ?? $trx->status }}
                                 </span>
                             </td>
 

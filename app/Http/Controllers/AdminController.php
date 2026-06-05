@@ -28,9 +28,11 @@ class AdminController extends Controller
         if ($request->tanggal) {
             $query->whereDate('tanggal_booking', $request->tanggal);
         }
+        if ($request->status) {
+            $query->where('status', $request->status);
+        }
 
-        // transaksi terbaru
-        $transaksis = $query->latest()->take(10)->get();
+        $transaksis = $query->latest()->get();
 
         return view('admin.dashboardAdmin', compact(
             'totalPendapatan',

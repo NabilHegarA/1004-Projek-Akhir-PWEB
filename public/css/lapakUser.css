@@ -578,20 +578,6 @@ body {
     background: #256f47;
 }
 
-/* RESPONSIVE */
-
-@media(max-width: 768px){
-
-    .lapak-modal-grid{
-        grid-template-columns: 1fr;
-    }
-
-    .lapak-modal-img{
-        height: 250px;
-    }
-
-}
-
 /* ================= MODAL DETAIL LAPAK ================= */
 
 #lapakModal{
@@ -842,35 +828,30 @@ body {
 
     .right{
         display:none;
-    }.lapak-grid {
+    }
+    .lapak-grid {
         grid-template-columns: 1fr;
     }
-}
 
 /* =========================
    RESPONSIVE MODAL DETAIL LAPAK (FIX)
 ========================= */
-
-@media (max-width: 768px) {
 
     .lapak-modal-content{
         padding: 16px;
         max-width: 95%;
     }
 
-    /* ubah jadi 1 kolom */
     .lapak-modal-grid{
         grid-template-columns: 1fr;
         gap: 18px;
     }
 
-    /* gambar jangan terlalu tinggi */
     .lapak-modal-img{
         height: 200px;
         border-radius: 12px;
     }
 
-    /* judul lebih kecil */
     .lapak-modal-title{
         font-size: 20px;
         margin-bottom: 12px;

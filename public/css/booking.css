@@ -47,6 +47,20 @@ body {
     font-weight: bold;
 }
 
+.right{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+}
+
+.right span{
+    font-size:13px;
+}
+
+.right strong{
+    font-size:15px;
+}
+
 .booking-section {
     min-height: 100vh;
     padding: 110px 30px 60px;

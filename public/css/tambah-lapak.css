@@ -102,6 +102,45 @@ body {
     justify-content: center;
 }
 
+/* DEFAULT (sidebar terbuka) */
+.darkmode-row{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* =========================
+   SIDEBAR CLOSE MODE
+========================= */
+.sidebar.close .darkmode-row{
+    justify-content: center;
+}
+
+/* sembunyikan text saat close */
+.sidebar.close .darkmode-row .text{
+    display: none;
+}
+
+/* HILANGKAN SWITCH saat close */
+.sidebar.close .darkmode-row .switch{
+    display: none;
+}
+
+/* ICON tetap tampil */
+.sidebar.close .darkmode-row .icon{
+    display: flex;
+    justify-content: center;
+    width: 40px;
+}
+
+.sidebar-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px;
+    margin:5px 10px;
+}
+
 .main {
     flex: 1;
     display: flex;
@@ -132,6 +171,20 @@ body {
     white-space: nowrap;
     font-size: 18px;
     font-weight: bold;
+}
+
+.right{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+}
+
+.right span{
+    font-size:13px;
+}
+
+.right strong{
+    font-size:15px;
 }
 
 .content {
@@ -420,64 +473,241 @@ body {
     animation: fadeIn 0.3s ease;
 }
 
-/* ================= RESPONSIVE ================= */
+/* =========================
+   MOBILE SIDEBAR
+========================= */
 
-@media (max-width: 950px) {
+.mobile-toggle{
+    display:none;
+    background:none;
+    border:none;
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+}
 
-    .profile-card {
-        max-width: 95%;
-        padding: 25px;
+.sidebar-overlay{
+    display:none;
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,0.4);
+
+    z-index:9998;
+}
+
+.sidebar-overlay.show{
+    display:block;
+}
+
+@media (max-width:1024px) and (min-width:768px){
+
+    .sidebar{
+        width:70px;
     }
 
-    .form-grid {
+    .sidebar.close{
+        width:70px;
+    }
+
+    .sidebar.close .text,
+    .sidebar.close .menu-title{
+        display:none;
+    }
+
+    .sidebar.close a{
+        justify-content:center;
+    }
+
+    .sidebar:not(.close){
+        width:220px;
+    }
+
+    .sidebar:not(.close) .text,
+    .sidebar:not(.close) .menu-title{
+        display:inline;
+    }
+
+    .sidebar:not(.close) a{
+        justify-content:flex-start;
+    }
+
+    .lapak-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .content{
+        padding:20px;
+        overflow-y:auto;
+    }
+
+    /* PROFILE CARD */
+    .profile-card{
+        max-width:100%;
+        padding:20px;
+    }
+
+    /* FORM */
+    .form-grid{
+        gap:20px;
+    }
+
+    .field input,
+    .field select,
+    .field textarea{
+        font-size:14px;
+    }
+
+    /* GAMBAR */
+    .preview-wrapper img{
+        max-width:220px;
+        height:180px;
+    }
+
+    /* BUTTON */
+    .edit-mode{
+        gap:12px;
+    }
+
+    .edit-mode button{
+        padding:12px;
+    }
+
+}
+
+@media (max-width:767px){
+
+    .sidebar{
+        position:fixed;
+        top:0;
+        left:-250px;
+
+        width:250px;
+        height:100vh;
+
+        z-index:9999;
+        transition:.3s;
+    }
+
+    .sidebar.show{
+        left:0;
+    }
+
+    /* Saat muncul, selalu full */
+    .sidebar.close{
+        width:250px;
+    }
+
+    .sidebar.close .text,
+    .sidebar.close .menu-title{
+        display:inline;
+    }
+
+    .sidebar.close a{
+        justify-content:flex-start;
+    }
+
+    .mobile-toggle{
+        display:block;
+    }
+
+    .brand{
+        font-size:15px;
+        margin-left: -10px;
+    }
+
+    .navbar{
+        justify-content:flex-start;
+    }
+
+    .right{
+        display:none;
+    }
+
+    .lapak-grid {
         grid-template-columns: 1fr;
     }
 
-    .preview-wrapper img {
-        max-width: 100%;
+    .content{
         height: auto;
-    }
-
-    .edit-mode {
-        flex-direction: column;
-    }
-
-    .edit-mode button {
-        width: 100%;
-    }
-}
-
-@media (max-width: 700px) {
-
-    .sidebar {
-        width: 70px;
-    }
-
-    .sidebar span:not(.icon) {
-        display: none;
-    }
-
-    .sidebar a {
+        min-height: calc(100vh - 60px);
+        padding:20px;
+        align-items:flex-start;
+        overflow-y:auto;
+        display: flex;
         justify-content: center;
+
+        background: url('../images/bg.png') center/cover no-repeat;
+        background-attachment: fixed;
     }
 
-    .navbar {
-        padding: 0 15px;
+    .profile-card{
+        width:100%;
+        padding:18px;
+        margin:15px 0;
+        border-radius:14px;
     }
 
-    .brand {
-        font-size: 14px;
+    .profile-card h2{
+        font-size:22px;
+        margin-bottom:20px;
     }
 
-    .left img {
-        width: 45px;
+    /* FORM JADI 1 KOLOM */
+    .form-grid{
+        grid-template-columns:1fr;
+        gap:18px;
     }
 
-    .profile-card h2 {
-        font-size: 24px;
+    .form-column{
+        gap:12px;
     }
 
-    .content {
-        padding: 15px;
+    .field label{
+        font-size:13px;
+    }
+
+    .field input,
+    .field select,
+    .field textarea{
+        font-size:14px;
+        padding:12px;
+    }
+
+    .field textarea{
+        min-height:100px;
+    }
+
+    /* PREVIEW GAMBAR */
+    .preview-wrapper img{
+        max-width:100%;
+        height:200px;
+    }
+
+    .info-text{
+        font-size:11px;
+    }
+
+    /* BUTTON */
+    .edit-btn{
+        margin-top:25px;
+    }
+
+    .edit-mode{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .edit-mode button{
+        width:100%;
+        padding:12px;
+    }
+
+    /* MODAL */
+    .modal-content{
+        width:calc(100% - 30px);
+        max-width:350px;
     }
 }
+

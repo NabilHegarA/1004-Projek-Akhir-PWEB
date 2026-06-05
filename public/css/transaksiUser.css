@@ -172,6 +172,20 @@ body {
     font-weight: bold;
 }
 
+.right{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+}
+
+.right span{
+    font-size:13px;
+}
+
+.right strong{
+    font-size:15px;
+}
+
 /* CONTENT */
 .content {
     flex: 1;
@@ -586,8 +600,6 @@ body {
     margin-top: 5px;
 }
 
-/* ================= BUKTI TF ================= */
-
 .detail-bukti-img{
     width: 100%;
     height: 320px;
@@ -763,6 +775,82 @@ body {
         justify-content:flex-start;
     }
 
+    .content{
+        padding: 18px;
+    }
+
+    .brand{
+        font-size: 16px;
+    }
+
+    .right span{
+        font-size: 12px;
+    }
+
+    .right strong{
+        font-size: 14px;
+    }
+
+    .tabs{
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .tab{
+        flex: 1 1 30%;
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+
+    .search-box{
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .search-box input{
+        flex: 1 1 60%;
+    }
+
+    .search-box button{
+        flex: 1 1 35%;
+    }
+
+    .filter-box{
+        flex-wrap: wrap;
+    }
+
+    .filter-box select,
+    .filter-box input{
+        flex: 1 1 45%;
+    }
+
+    .card-grid{
+        grid-template-columns: repeat(3, 1fr); /* dari 5 → 2 kolom */
+        gap: 16px;
+    }
+
+    .card-image{
+        height: 170px;
+    }
+
+    .card-body h3{
+        font-size: 18px;
+    }
+
+    .card-body p{
+        font-size: 13px;
+    }
+
+    .btn{
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    /* ================= MODAL ================= */
+    .detail-modal{
+        width: 95%;
+        padding: 22px;
+    }
 }
 
 @media (max-width:767px){
@@ -813,151 +901,60 @@ body {
     .right{
         display:none;
     }
-}
 
-/* ================= RESPONSIVE DETAIL MODAL ================= */
+    /* ================= DETAIL MODAL ================= */
 
-@media (max-width: 900px) {
-
-    .detail-modal{
-        padding: 20px;
-    }
-
-    .detail-content{
-        flex-direction: column;
-        gap: 15px;
+    .detail-modal-overlay{
+        padding:10px;
     }
 
     .detail-modal{
-        width: 95%;
-    }
-
-    .detail-bukti-img{
-        max-height: 220px;
-    }
-}
-
-@media (max-width: 600px) {
-
-    .detail-modal{
-        padding: 16px;
-        border-radius: 16px;
+        width:100%;
+        max-width:100%;
+        padding:16px;
+        border-radius:16px;
+        max-height:85vh;
+        overflow-y:auto;
     }
 
     .detail-title{
-        font-size: 18px;
-    }
-
-    .detail-box p{
-        font-size: 13px;
-        padding: 10px;
-    }
-
-    .close-detail{
-        width: 32px;
-        height: 32px;
-        font-size: 16px;
-    }
-}
-
-/* ================= FIX DETAIL MODAL TANPA SENTUH LAYOUT LAIN ================= */
-
-@media (max-width: 768px) {
-
-    .detail-modal{
-        max-width: 900px;
-        padding: 20px;
-    }
-
-    .detail-title{
-        font-size: 18px;
-        margin-bottom: 15px;
+        font-size:16px;
+        margin-bottom:15px;
+        padding-right:25px;
     }
 
     .detail-content{
-        flex-direction: column; /* cuma override flex modal ini saja */
-        gap: 15px;
-    }
-
-    .detail-box{
-        margin-bottom: 10px;
-    }
-
-    .detail-box label{
-        font-size: 12px;
-        margin-bottom: 4px;
-    }
-
-    .detail-box p{
-        font-size: 12px;
-        padding: 8px 10px;
-    }
-
-    .detail-bukti-img{
-        max-height: 160px;
-    }
-
-    .close-detail{
-        width: 32px;
-        height: 32px;
-        font-size: 16px;
-    }
-}
-
-@media (max-width: 540px) {
-
-    .detail-modal{
-        width: 95%;
-        padding: 12px;
-        border-radius: 14px;
-    }
-
-    .detail-title{
-        font-size: 16px;
-        margin-bottom: 12px;
-    }
-
-    .detail-content{
-        flex-direction: column;
-        gap: 10px;
+        flex-direction:column;
+        gap:12px;
     }
 
     .detail-column{
-        width: 100%;
+        width:100%;
     }
 
     .detail-box{
-        margin-bottom: 8px;
+        margin-bottom:10px;
     }
 
     .detail-box label{
-        font-size: 11px;
-        margin-bottom: 3px;
+        font-size:12px;
     }
 
     .detail-box p{
-        font-size: 11px;
-        padding: 7px 8px;
-        border-radius: 8px;
+        font-size:12px;
+        padding:9px 10px;
+        word-break:break-word;
     }
 
     .detail-bukti-img{
-        max-height: 140px;
-        border-radius: 10px;
+        max-height:180px;
     }
 
     .close-detail{
-        width: 30px;
-        height: 30px;
-        font-size: 14px;
-        top: 10px;
-        right: 10px;
-    }
-
-    .btn-danger{
-        font-size: 12px;
-        padding: 8px;
+        width:32px;
+        height:32px;
+        font-size:14px;
+        top:10px;
+        right:10px;
     }
 }
-
-
