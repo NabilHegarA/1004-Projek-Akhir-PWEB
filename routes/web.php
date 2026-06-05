@@ -12,9 +12,7 @@ use App\Http\Controllers\UserController;
 
 
 // ================= LANDING =================
-Route::get('/', function () {
-    return 'HOOKPOINT OK';
-});
+Route::get('/', [LandingController::class, 'index']);
 
 Route::get('/lapak', [LapakController::class, 'landing']);
 
