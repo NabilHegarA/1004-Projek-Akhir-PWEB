@@ -181,16 +181,17 @@ body {
 }
 
 .btn {
-    margin-top: auto;
-    padding: 10px;
-    background: #2f7a4d;
-    color: white;
-    text-align: center;
-    border-radius: 5px;
+    width: 100%;
+    padding: 12px;
+    border: none;
     text-decoration: none;
-    font-weight: bold;
+    border-radius: 12px;
+    background: #2e8b57;
+    color: white;
+    font-weight: 600;
     font-size: 16px;
-    transition: 0.3s;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
 .btn:hover{
@@ -308,29 +309,22 @@ body {
    BUTTON DETAIL
 ======================================== */
 
-.btn{
+.btn-detail{
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
     padding: 12px;
-    border-radius: 10px;
-
+    border: none;
+    text-decoration: none;
+    border-radius: 12px;
     background: #2e8b57;
     color: white;
-
     font-weight: 600;
-    text-decoration: none;
-    border: none;
-
+    font-size: 16px;
     cursor: pointer;
-    transition: 0.25s;
+    transition: 0.2s;
 }
 
-.btn:hover{
+.btn-detail:hover{
     background: #256f47;
-    transform: translateY(-2px);
 }
 
 .btn.disabled{
@@ -345,17 +339,6 @@ body {
 
 .card:hover{
     z-index: 5;
-}
-
-.user-btn{
-    position: relative;
-    z-index: 20;
-}
-
-.btn-detail{
-    position: relative;
-    z-index: 30;
-    pointer-events: auto;
 }
 
 /* ========================================

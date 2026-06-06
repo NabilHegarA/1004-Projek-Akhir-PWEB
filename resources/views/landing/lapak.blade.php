@@ -197,31 +197,27 @@ function fetchLapak() {
                                 Status: ${lapak.status === 'available' ? 'Available' : 'Not Available'}
                             </p>
 
-                            <div class="btn">
+                            <button
+                                type="button"
+                                class="btn-detail"
 
-                                <button
-                                    type="button"
-                                    class="btn-detail"
+                                data-nama="${lapak.nama}"
+                                data-jenis="${lapak.jenis}"
+                                data-harga="${Number(lapak.harga).toLocaleString('id-ID')}"
+                                data-gambar="/uploads/${lapak.gambar}"
 
-                                    data-nama="${lapak.nama}"
-                                    data-jenis="${lapak.jenis}"
-                                    data-harga="${Number(lapak.harga).toLocaleString('id-ID')}"
-                                    data-gambar="/uploads/${lapak.gambar}"
+                                data-deskripsi="${lapak.deskripsi
+                                    .replace(/"/g, '&quot;')
+                                    .replace(/\n/g, '&#10;')}"
 
-                                    data-deskripsi="${lapak.deskripsi
-                                        .replace(/"/g, '&quot;')
-                                        .replace(/\n/g, '&#10;')}"
+                                data-status="${lapak.status}"
 
-                                    data-status="${lapak.status}"
+                                data-booking="/user/booking/${lapak.id}"
 
-                                    data-booking="/user/booking/${lapak.id}"
-
-                                    onclick="openLapakModal(this)"
-                                >
-                                    Detail
-                                </button>
-
-                            </div>
+                                onclick="openLapakModal(this)"
+                            >
+                                Detail
+                            </button>
                         </div>
 
                     </article>
