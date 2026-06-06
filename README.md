@@ -11,10 +11,10 @@ Nabil Hegar Apurina (NIM: 242410101004)
 **Fakultas Ilmu Komputer - Universitas Jember**
 
 🎥 **Demo Video:**
-[Tambahkan Link YouTube Di Sini]
+[https://youtu.be/9Pph7qoyF8c](https://youtu.be/9Pph7qoyF8c)
 
 🌐 **URL Deploy:**
-[Tambahkan Link Website Di Sini]
+[https://hookpoint-production.up.railway.app](https://hookpoint-production.up.railway.app)
 
 ---
 
