@@ -174,7 +174,7 @@ function fetchLapak() {
                         </li>
                     `;
                 }
-                
+
                 container.innerHTML += `
                     <article class="card fade-card">
 
@@ -197,9 +197,31 @@ function fetchLapak() {
                                 Status: ${lapak.status === 'available' ? 'Available' : 'Not Available'}
                             </p>
 
-                            <a href="/login" class="btn ${lapak.status === 'unavailable' ? 'disabled' : ''}">
-                                Booking Sekarang
-                            </a>
+                            <div class="btn">
+
+                                <button
+                                    type="button"
+                                    class="btn-detail"
+
+                                    data-nama="${lapak.nama}"
+                                    data-jenis="${lapak.jenis}"
+                                    data-harga="${Number(lapak.harga).toLocaleString('id-ID')}"
+                                    data-gambar="/uploads/${lapak.gambar}"
+
+                                    data-deskripsi="${lapak.deskripsi
+                                        .replace(/"/g, '&quot;')
+                                        .replace(/\n/g, '&#10;')}"
+
+                                    data-status="${lapak.status}"
+
+                                    data-booking="/user/booking/${lapak.id}"
+
+                                    onclick="openLapakModal(this)"
+                                >
+                                    Detail
+                                </button>
+
+                            </div>
                         </div>
 
                     </article>
