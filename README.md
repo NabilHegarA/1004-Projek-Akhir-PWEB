@@ -42,6 +42,7 @@ Aplikasi HookPoint menyediakan fitur yang dirancang untuk memenuhi kebutuhan pel
 * Registrasi akun
 * Login akun
 * Logout akun
+* Lupa Password
 * Remember Me
 
 ### Profil
@@ -71,6 +72,7 @@ Aplikasi HookPoint menyediakan fitur yang dirancang untuk memenuhi kebutuhan pel
 
 * Login akun
 * Logout akun
+* Lupa Password
 * Remember Me
 
 ### Dashboard
