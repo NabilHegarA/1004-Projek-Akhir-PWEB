@@ -11,10 +11,10 @@ Nabil Hegar Apurina (NIM: 242410101004)
 **Fakultas Ilmu Komputer - Universitas Jember**
 
 🎥 **Demo Video:**
-[Tambahkan Link YouTube Di Sini]
+[https://youtu.be/9Pph7qoyF8c](https://youtu.be/9Pph7qoyF8c)
 
 🌐 **URL Deploy:**
-[Tambahkan Link Website Di Sini]
+[https://hookpoint-production.up.railway.app](https://hookpoint-production.up.railway.app)
 
 ---
 
@@ -42,6 +42,7 @@ Aplikasi HookPoint menyediakan fitur yang dirancang untuk memenuhi kebutuhan pel
 * Registrasi akun
 * Login akun
 * Logout akun
+* Lupa Password
 * Remember Me
 
 ### Profil
@@ -71,6 +72,7 @@ Aplikasi HookPoint menyediakan fitur yang dirancang untuk memenuhi kebutuhan pel
 
 * Login akun
 * Logout akun
+* Lupa Password
 * Remember Me
 
 ### Dashboard
