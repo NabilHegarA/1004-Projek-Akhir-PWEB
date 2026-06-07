@@ -69,6 +69,4 @@ Route::middleware(['auth', 'user']) ->prefix('user') ->group(function () {
 
 
 // ================= AUTH =================
-Route::post('/login', [AuthenticatedSessionController::class, 'store']);
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy']);
 require __DIR__ . '/auth.php';
