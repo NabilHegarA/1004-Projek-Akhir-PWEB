@@ -12,7 +12,17 @@ use App\Http\Controllers\UserController;
 
 
 // ================= LANDING =================
-Route::get('/', [LandingController::class, 'index']);
+Route::get('/', function () {
+    if (!auth()->check()) {
+        return app(LandingController::class)->index();
+    }
+
+    return redirect(
+        auth()->user()->role === 'admin'
+            ? '/admin/dashboard'
+            : '/user/dashboard'
+    );
+});
 
 Route::get('/lapak', [LapakController::class, 'landing']);
 
