@@ -27,22 +27,12 @@
                         <label>Nama Lapak<span class="required">*</span></label>
                         <input type="text" name="nama" id="nama">
                         <small id="error-nama" class="error-msg"></small>
-                        @error('nama')
-                            <small class="error-msg" style="display:block">
-                                {{ $message }}
-                            </small>
-                        @enderror
                     </div>
 
                     <div class="field">
                         <label>Harga<span class="required">*</span></label>
                         <input type="number" name="harga" id="harga">
                         <small id="error-harga" class="error-msg"></small>
-                        @error('harga')
-                            <small class="error-msg" style="display:block">
-                                {{ $message }}
-                            </small>
-                        @enderror
                     </div>
 
                     <div class="field">
@@ -52,11 +42,6 @@
                             Gunakan ENTER untuk membuat poin (1 baris= 1 fasilitas/bonus)
                         </small>
                         <small id="error-deskripsi" class="error-msg"></small>
-                        @error('deskripsi')
-                            <small class="error-msg" style="display:block">
-                                {{ $message }}
-                            </small>
-                        @enderror
                     </div>
 
                     <div class="field">
@@ -67,11 +52,6 @@
                             <option value="unavailable">Not Available</option>
                         </select>
                         <small id="error-status" class="error-msg"></small>
-                        @error('status')
-                            <small class="error-msg" style="display:block">
-                                {{ $message }}
-                            </small>
-                        @enderror
                     </div>
 
                 </div>
@@ -89,11 +69,6 @@
                             <option value="Patin">Patin</option>
                         </select>
                         <small id="error-jenis" class="error-msg"></small>
-                        @error('jenis')
-                            <small class="error-msg" style="display:block">
-                                {{ $message }}
-                            </small>
-                        @enderror
                     </div>
 
                     <div class="field">
@@ -103,11 +78,6 @@
                             Format: PNG, JPEG, JPG <br>Ukuran Maks: 2MB
                         </small>
                         <small id="error-gambar" class="error-msg"></small>
-                        @error('gambar')
-                            <small class="error-msg" style="display:block">
-                                {{ $message }}
-                            </small>
-                        @enderror
                     </div>
 
                 </div>
@@ -149,6 +119,15 @@ function submitForm() {
             error.style.display = "none";
         }
     });
+
+    const harga = document.getElementById("harga");
+    const errorHarga = document.getElementById("error-harga");
+
+    if (harga.value.trim() && isNaN(harga.value)) {
+        errorHarga.innerText = "Harga harus berupa angka";
+        errorHarga.style.display = "block";
+        valid = false;
+    }
 
     const gambar = document.getElementById("gambar");
     const errorGambar = document.getElementById("error-gambar");

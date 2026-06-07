@@ -11,6 +11,7 @@ class LandingController extends Controller
     {
         $lapaks = Lapak::all();
 
+        //REKAP BERDASARKAN JENIS
         $rekapLapak = $lapaks->groupBy('jenis')->map(function ($item, $jenis) {
             return [
                 'jenis' => $jenis,

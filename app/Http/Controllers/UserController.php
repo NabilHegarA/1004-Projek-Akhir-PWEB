@@ -21,10 +21,4 @@ class UserController extends Controller
             'completed'  => $bookings->where('status', 'completed')->count(),
         ]);
     }
-
-    //ini nnti di hapus klu ada transaksi controller
-    public function transaksi()
-    {
-        return view('user.transaksiUser');
-    }
 }

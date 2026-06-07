@@ -37,11 +37,20 @@ class ProfileController extends Controller
     // ================= UPDATE PROFILE =================
     public function update(Request $request): RedirectResponse
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'no_telepon' => 'required',
-        ]);
+        $request->validate(
+            [
+                'name' => 'required',
+                'email' => 'required|email',
+                'no_telepon' => 'required|numeric',
+            ],
+            [
+                'name.required' => 'Nama wajib diisi.',
+                'email.required' => 'Email wajib diisi.',
+                'email.email' => 'Format email tidak valid.',
+                'no_telepon.required' => 'Nomor telepon wajib diisi.',
+                'no_telepon.numeric' => 'Nomor telepon hanya boleh angka.',
+            ]
+        );
 
         $user = auth()->user();
 
@@ -56,26 +65,9 @@ class ProfileController extends Controller
 
             return redirect('/admin/profile')
                 ->with('success', 'Profil berhasil diperbarui');
-
         }
 
         return redirect('/user/profileUser')
             ->with('success', 'Profil berhasil diperbarui');
-    }
-
-
-    // ================= DELETE ACCOUNT =================
-    public function destroy(Request $request): RedirectResponse
-    {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
-        ]);
-
-        $user = $request->user();
-        Auth::logout();
-        $user->delete();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return Redirect::to('/');
     }
 }

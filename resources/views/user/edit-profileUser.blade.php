@@ -55,23 +55,52 @@ function kembali() {
 function editForm() {
     let valid = true;
 
-    const fields = ["name", "email", "no_telepon"];
+    const name = document.getElementById("name");
+    const email = document.getElementById("email");
+    const noTelepon = document.getElementById("no_telepon");
 
-    fields.forEach(id => {
-        const input = document.getElementById(id);
-        const error = document.getElementById("error-" + id);
+    const errorName = document.getElementById("error-name");
+    const errorEmail = document.getElementById("error-email");
+    const errorTelepon = document.getElementById("error-no_telepon");
 
-        if (!input.value.trim()) {
-            error.innerText = "Wajib diisi";
-            error.style.display = "block";
+    errorName.style.display = "none";
+    errorEmail.style.display = "none";
+    errorTelepon.style.display = "none";
+
+    // Nama
+    if (!name.value.trim()) {
+        errorName.innerText = "Nama wajib diisi";
+        errorName.style.display = "block";
+        valid = false;
+    }
+
+    // Email
+    if (!email.value.trim()) {
+        errorEmail.innerText = "Email wajib diisi";
+        errorEmail.style.display = "block";
+        valid = false;
+    } else {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailPattern.test(email.value.trim())) {
+            errorEmail.innerText = "Format email tidak valid";
+            errorEmail.style.display = "block";
             valid = false;
-        } else {
-            error.style.display = "none";
         }
-    });
+    }
+
+    // Nomor Telepon
+    if (!noTelepon.value.trim()) {
+        errorTelepon.innerText = "Nomor telepon wajib diisi";
+        errorTelepon.style.display = "block";
+        valid = false;
+    } else if (!/^[0-9]+$/.test(noTelepon.value.trim())) {
+        errorTelepon.innerText = "Nomor telepon hanya boleh angka";
+        errorTelepon.style.display = "block";
+        valid = false;
+    }
 
     if (!valid) return;
-
     openConfirmModal();
 }
 

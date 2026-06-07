@@ -22,7 +22,7 @@ class AdminController extends Controller
 
         $lapakAktif = Lapak::count();
 
-        // ================= FILTER TANGGAL =================
+        // ================= TABEL TRANSAKSI =================
         $query = Booking::with(['user', 'lapak']);
 
         if ($request->tanggal) {
@@ -34,16 +34,12 @@ class AdminController extends Controller
 
         $transaksis = $query->latest()->get();
 
+        // ================= DASHBOARD =================
         return view('admin.dashboardAdmin', compact(
             'totalPendapatan',
             'totalTransaksi',
             'lapakAktif',
             'transaksis'
         ));
-    }
-
-    public function transaksi()
-    {
-        return view('admin.transaksiAdmin');
     }
 }

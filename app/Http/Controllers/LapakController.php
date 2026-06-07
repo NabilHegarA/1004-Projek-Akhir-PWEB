@@ -95,11 +95,12 @@ class LapakController extends Controller
         $request->validate([
             'nama' => 'required',
             'jenis' => 'required',
-            'harga' => 'required',
+            'harga' => 'required|numeric',
             'deskripsi' => 'required',
             'status' => 'required',
             'gambar' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ], [
+            'harga.numeric' => 'Harga harus berupa angka.',
             'gambar.image' => 'File harus berupa gambar.',
             'gambar.mimes' => 'Format gambar harus JPG, JPEG, atau PNG.',
             'gambar.max' => 'Ukuran gambar maksimal 2 MB.',
@@ -141,11 +142,12 @@ class LapakController extends Controller
         $request->validate([
             'nama' => 'required',
             'jenis' => 'required',
-            'harga' => 'required',
+            'harga' => 'required|numeric',
             'deskripsi' => 'required',
             'status' => 'required',
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ], [
+            'harga.numeric' => 'Harga harus berupa angka.',
             'gambar.image' => 'File harus berupa gambar.',
             'gambar.mimes' => 'Format gambar harus JPG, JPEG, atau PNG.',
             'gambar.max' => 'Ukuran gambar maksimal 2 MB.',

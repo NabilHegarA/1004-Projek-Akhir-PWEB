@@ -248,8 +248,8 @@
 
 @section('scripts')
 <script>
+/* ========================== HITUNG TOTAL HARGA ===============================*/
 function updateTotal() {
-
     const jumlahEl = document.getElementById("jumlah_orang");
     const jumlah = parseInt(jumlahEl?.value || 0);
 
@@ -267,6 +267,7 @@ function updateTotal() {
     totalInput.value = "Rp " + total.toLocaleString("id-ID");
 }
 
+/* ========================== VALIDASI BOOKING FORM ===============================*/
 function bookingForm() {
     let valid = true;
 
@@ -274,11 +275,11 @@ function bookingForm() {
         "tanggal_booking",
         "jam_booking",
         "jumlah_orang",
-        "metode_pembayaran",
-        "bukti_tf"
+        "metode_pembayaran"
     ];
 
     fields.forEach(id => {
+        // VALIDASI WAJIB ISI
         const input = document.getElementById(id);
         const error = document.getElementById("error-" + id);
 
@@ -286,14 +287,8 @@ function bookingForm() {
 
         let isEmpty = false;
 
-        // FILE
-        if (input.type === "file") {
-            isEmpty = input.files.length === 0;
-        }
         // SELECT / INPUT DATE / TEXT
-        else {
-            isEmpty = input.value === "";
-        }
+        isEmpty = input.value === "";
 
         if (isEmpty) {
             error.innerText = "Wajib diisi";
@@ -304,13 +299,60 @@ function bookingForm() {
             error.innerText = "";
             error.style.display = "none";
         }
+
     });
 
-    if (!valid) return;
+    //VALIDASI FORMAT BUKTI TF
+    const buktiTf = document.getElementById("bukti_tf");
+    const errorBukti = document.getElementById("error-bukti_tf");
 
+    if (buktiTf && errorBukti) {
+
+        // RESET ERROR SELALU (INI PENTING)
+        errorBukti.innerText = "";
+        errorBukti.style.display = "none";
+
+        //validasi file kosong
+        if (buktiTf.files.length === 0) {
+            errorBukti.innerText = "Wajib diisi";
+            errorBukti.style.display = "block";
+            errorBukti.style.color = "red";
+            valid = false;
+        }
+        else {
+
+            const file = buktiTf.files[0];
+
+            const allowedTypes = [
+                "image/jpeg",
+                "image/png",
+                "image/jpg"
+            ];
+
+            /* FORMAT CHECK */
+            if (!allowedTypes.includes(file.type)) {
+                errorBukti.innerText = "Format harus JPG, PNG, atau JPEG";
+                errorBukti.style.display = "block";
+                errorBukti.style.color = "red";
+                valid = false;
+            }
+
+            /* SIZE CHECK */
+            else if (file.size > 2 * 1024 * 1024) {
+                errorBukti.innerText = "Ukuran maksimal 2 MB";
+                errorBukti.style.display = "block";
+                errorBukti.style.color = "red";
+                valid = false;
+            }
+        }
+    }
+
+    //VALIDASI TERAKHIR
+    if (!valid) return;
     document.getElementById("confirmModal").style.display = "flex";
 }
 
+/* ========================== MODAL CONTROL ===============================*/
 function closeConfirmModal() {
     document.getElementById("confirmModal").style.display = "none";
 }
@@ -339,25 +381,22 @@ function submitBooking() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+
+    //TOTAL HARGA BOOKING
     updateTotal();
     document.getElementById("jumlah_orang")
         .addEventListener("change", updateTotal);
-});
 
-document.addEventListener("DOMContentLoaded", function () {
-
+    //DATA JADWAL DAN JAM BOOKING
     const dateInput = document.getElementById("tanggal_booking");
     const jamSelect = document.getElementById("jam_booking");
     const scheduleBox = document.getElementById("schedule-full");
-
     const allJam = ["08:00", "11:00", "14:00"];
 
     // hide warning default
     scheduleBox.style.display = "none";
 
-    // =====================
-    // MIN DATE (HARI INI)
-    // =====================
+    // MINIMAL TANGGAL HARI INI
     const today = new Date();
     const yyyy = today.getFullYear();
     const mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -365,7 +404,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     dateInput.setAttribute("min", `${yyyy}-${mm}-${dd}`);
 
-    // reset jam kalau ganti tanggal
+    // RESET JAM KALAU GANTI TANGGAL
     dateInput.addEventListener("change", async function () {
 
         const tanggal = this.value;
@@ -397,7 +436,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // reset error jam
+    // RESET ERROR JAM
     jamSelect.addEventListener("change", function () {
         document.getElementById("error-jam_booking").style.display = "none";
         jamSelect.classList.remove("error");

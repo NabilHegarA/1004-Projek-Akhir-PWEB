@@ -12,12 +12,6 @@
             </div>
         @endif
 
-        @if(session('error'))
-            <div class="error-msg">
-                {{ session('error') }}
-            </div>
-        @endif
-
         <h1 class="fade-up">Daftar Lapak Pemancingan</h1>
         <form id="filter-form" onsubmit="return false;">
             <div class="search-box">
@@ -267,7 +261,7 @@
     });
 
     setTimeout(() => {
-        const msg = document.querySelector('.success-msg', 'error-msg');
+        const msg = document.querySelector('.success-msg');
 
         if (msg) {
             msg.style.opacity = '0';
@@ -304,22 +298,16 @@
         const bookingBtn = document.getElementById("modalBookingBtn");
 
         if(button.dataset.status === "available"){
-
             bookingBtn.href = button.dataset.booking;
             bookingBtn.innerText = "Booking Sekarang";
-
             bookingBtn.classList.remove("disabled-btn");
-
             bookingBtn.style.pointerEvents = "auto";
             bookingBtn.style.opacity = "1";
 
         }else{
-
             bookingBtn.href = "#";
             bookingBtn.innerText = "Tidak Tersedia";
-
             bookingBtn.classList.add("disabled-btn");
-
             bookingBtn.style.pointerEvents = "none";
             bookingBtn.style.opacity = "0.6";
         }

@@ -12,33 +12,14 @@ class BookingController extends Controller
     public function create($id)
     {
         $lapak = Lapak::findOrFail($id);
-
-        if($lapak->status == 'unavailable'){
-            return redirect()
-                ->route('lapak.user')
-                ->with('error', 'Lapak sedang tidak tersedia');
-        }
-
         return view('user.booking', compact('lapak'));
     }
 
     // SIMPAN BOOKING
     public function store(Request $request, $id)
     {
+        //AMBIL DATA LAPAK
         $lapak = Lapak::findOrFail($id);
-
-        if($lapak->status == 'unavailable'){
-            return back()->with(
-                'error',
-                'Lapak sedang tidak tersedia'
-            );
-        }
-
-        if ($request->tanggal_booking < date('Y-m-d')) {
-            return back()->withErrors([
-                'tanggal_booking' => 'Tanggal tidak valid'
-            ])->withInput();
-        }
 
         // VALIDASI FULL
         $request->validate([
@@ -49,7 +30,14 @@ class BookingController extends Controller
             'jam_booking' => 'required|in:08:00,11:00,14:00'
         ]);
 
-        $lapak = Lapak::findOrFail($id);
+        //TANGGAL SEBELUMNYA TIDAK BISA DIPILIH
+        if ($request->tanggal_booking < date('Y-m-d')) {
+            return back()->withErrors([
+                'tanggal_booking' => 'Tanggal tidak valid'
+            ])->withInput();
+        }
+
+        //HITUNG TOTAL HARGA
         $total_harga = $lapak->harga * (int) $request->jumlah_orang;
 
         // CEK DOUBLE BOOKING (tanggal + jam)
@@ -65,7 +53,7 @@ class BookingController extends Controller
             ])->withInput();
         }
 
-        // UPLOAD FILE
+        // UPLOAD FILE BUKTI TF
         $file = $request->file('bukti_tf');
         $namaFile = time() . '.' . $file->extension();
         $file->move(public_path('bukti_tf'), $namaFile);
@@ -79,8 +67,6 @@ class BookingController extends Controller
             'total_harga' => $total_harga,
             'bukti_tf' => $namaFile,
             'status' => 'pending',
-
-            // NEW DATA
             'metode_pembayaran' => $request->metode_pembayaran,
             'jumlah_orang' => $request->jumlah_orang,
             'jam_booking' => $request->jam_booking

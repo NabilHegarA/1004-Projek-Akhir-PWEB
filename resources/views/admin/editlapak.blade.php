@@ -77,15 +77,12 @@
 
                     <div class="field">
                         <label>Gambar<span class="required">*</span></label>
-
                         <input type="file" name="gambar" id="gambar">
-
                         <small class="info-text">
                             Kosongkan jika tidak ingin mengganti gambar <br>
                             Format: PNG, JPEG, JPG <br>
                             Ukuran Maks: 2MB
                         </small>
-
                         <div class="preview-wrapper">
                             <img src="{{ asset('uploads/' . $lapak->gambar) }}">
                         </div>
@@ -134,6 +131,15 @@ function editForm() {
             error.style.display = "none";
         }
     });
+
+    const harga = document.getElementById("harga");
+    const errorHarga = document.getElementById("error-harga");
+
+    if (harga.value.trim() && isNaN(harga.value)) {
+        errorHarga.innerText = "Harga harus berupa angka";
+        errorHarga.style.display = "block";
+        valid = false;
+    }
 
     const gambar = document.getElementById("gambar");
     const errorGambar = document.getElementById("error-gambar");
