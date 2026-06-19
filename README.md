@@ -190,6 +190,18 @@ Berikut akun yang dapat digunakan untuk melakukan pengujian sistem:
 
 ---
 
+# URL Sistem
+🎥 Demo Video: 
+https://youtu.be/9Pph7qoyF8c
+
+🌐 URL Deploy:
+ https://hookpointproduction.up.railway.app
+
+🔗 URL Github:
+https://github.com/NabilHegarA/1004-Projek-Akhir-PWEB
+
+---
+
 # 📄 Lisensi
 
 Proyek ini dikembangkan untuk keperluan akademik dan pembelajaran sebagai Proyek Akhir Mata Kuliah Pemrograman Berbasis Website Program Studi Sistem Informasi Universitas Jember.
