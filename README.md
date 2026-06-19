@@ -181,6 +181,15 @@ Berikut akun yang dapat digunakan untuk melakukan pengujian sistem:
 
 ---
 
+## Screenshot Sistem
+<img width="953" height="439" alt="image" src="https://github.com/user-attachments/assets/b56464e9-484f-4244-b0e2-c35e2415f9db" />
+<img width="953" height="439" alt="image" src="https://github.com/user-attachments/assets/cd259bed-7e2d-48bf-b026-4fb5ba9e7672" />
+<img width="951" height="437" alt="image" src="https://github.com/user-attachments/assets/8d8b4421-640a-48c0-ab94-b51b8f0e96fa" />
+<img width="952" height="437" alt="image" src="https://github.com/user-attachments/assets/a05ae836-dd14-422a-a7a5-8802a090d3d6" />
+<img width="950" height="433" alt="image" src="https://github.com/user-attachments/assets/2d9d42ad-7ec2-44c8-926d-5986c3a746a9" />
+
+---
+
 # 📄 Lisensi
 
 Proyek ini dikembangkan untuk keperluan akademik dan pembelajaran sebagai Proyek Akhir Mata Kuliah Pemrograman Berbasis Website Program Studi Sistem Informasi Universitas Jember.
