@@ -200,6 +200,9 @@ https://youtu.be/9Pph7qoyF8c
 🔗 URL Github:
 https://github.com/NabilHegarA/1004-Projek-Akhir-PWEB
 
+🔗 URL LinkedIn:
+https://www.linkedin.com/feed/update/urn:li:activity:7473655437180116993/
+
 ---
 
 # 📄 Lisensi
